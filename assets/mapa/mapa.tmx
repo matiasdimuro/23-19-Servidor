@@ -1,0 +1,725 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="60" height="34" tilewidth="32" tileheight="32" infinite="0" nextlayerid="15" nextobjectid="83">
+ <tileset firstgid="1" name="Industrial" tilewidth="32" tileheight="32" tilecount="84" columns="0">
+  <grid orientation="orthogonal" width="1" height="1"/>
+  <tile id="88">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_01.png"/>
+  </tile>
+  <tile id="89">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_02.png"/>
+  </tile>
+  <tile id="90">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_03.png"/>
+  </tile>
+  <tile id="91">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_04.png"/>
+  </tile>
+  <tile id="92">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_05.png"/>
+  </tile>
+  <tile id="93">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_06.png"/>
+  </tile>
+  <tile id="94">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_07.png"/>
+  </tile>
+  <tile id="95">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_08.png"/>
+  </tile>
+  <tile id="96">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_09.png"/>
+  </tile>
+  <tile id="97">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_10.png"/>
+  </tile>
+  <tile id="98">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_11.png"/>
+  </tile>
+  <tile id="99">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_12.png"/>
+  </tile>
+  <tile id="100">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_13.png"/>
+  </tile>
+  <tile id="101">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_14.png"/>
+  </tile>
+  <tile id="102">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_15.png"/>
+  </tile>
+  <tile id="103">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_16.png"/>
+  </tile>
+  <tile id="104">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_17.png"/>
+  </tile>
+  <tile id="105">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_18.png"/>
+  </tile>
+  <tile id="106">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_19.png"/>
+  </tile>
+  <tile id="107">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_20.png"/>
+  </tile>
+  <tile id="108">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_21.png"/>
+  </tile>
+  <tile id="109">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_22.png"/>
+  </tile>
+  <tile id="110">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_23.png"/>
+  </tile>
+  <tile id="111">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_24.png"/>
+  </tile>
+  <tile id="112">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_25.png"/>
+  </tile>
+  <tile id="113">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_26.png"/>
+  </tile>
+  <tile id="114">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_27.png"/>
+  </tile>
+  <tile id="115">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_28.png"/>
+  </tile>
+  <tile id="116">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_29.png"/>
+  </tile>
+  <tile id="117">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_30.png"/>
+  </tile>
+  <tile id="118">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_31.png"/>
+  </tile>
+  <tile id="119">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_32.png"/>
+  </tile>
+  <tile id="120">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_33.png"/>
+  </tile>
+  <tile id="121">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_34.png"/>
+  </tile>
+  <tile id="122">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_35.png"/>
+  </tile>
+  <tile id="123">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_36.png"/>
+  </tile>
+  <tile id="124">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_37.png"/>
+  </tile>
+  <tile id="125">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_38.png"/>
+  </tile>
+  <tile id="126">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_39.png"/>
+  </tile>
+  <tile id="127">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_40.png"/>
+  </tile>
+  <tile id="128">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_41.png"/>
+  </tile>
+  <tile id="129">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_42.png"/>
+  </tile>
+  <tile id="130">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_43.png"/>
+  </tile>
+  <tile id="131">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_44.png"/>
+  </tile>
+  <tile id="132">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_45.png"/>
+  </tile>
+  <tile id="133">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_46.png"/>
+  </tile>
+  <tile id="134">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_47.png"/>
+  </tile>
+  <tile id="135">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_48.png"/>
+  </tile>
+  <tile id="136">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_49.png"/>
+  </tile>
+  <tile id="137">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_50.png"/>
+  </tile>
+  <tile id="138">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_51.png"/>
+  </tile>
+  <tile id="139">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_52.png"/>
+  </tile>
+  <tile id="140">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_53.png"/>
+  </tile>
+  <tile id="141">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_54.png"/>
+  </tile>
+  <tile id="142">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_55.png"/>
+  </tile>
+  <tile id="143">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_56.png"/>
+  </tile>
+  <tile id="144">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_57.png"/>
+  </tile>
+  <tile id="145">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_58.png"/>
+  </tile>
+  <tile id="146">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_59.png"/>
+  </tile>
+  <tile id="147">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_60.png"/>
+  </tile>
+  <tile id="148">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_61.png"/>
+  </tile>
+  <tile id="149">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_62.png"/>
+  </tile>
+  <tile id="150">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_63.png"/>
+  </tile>
+  <tile id="151">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_64.png"/>
+  </tile>
+  <tile id="152">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_65.png"/>
+  </tile>
+  <tile id="153">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_66.png"/>
+  </tile>
+  <tile id="154">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_67.png"/>
+  </tile>
+  <tile id="155">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_68.png"/>
+  </tile>
+  <tile id="156">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_69.png"/>
+  </tile>
+  <tile id="157">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_70.png"/>
+  </tile>
+  <tile id="158">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_71.png"/>
+  </tile>
+  <tile id="159">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_72.png"/>
+  </tile>
+  <tile id="160">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_73.png"/>
+  </tile>
+  <tile id="161">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_74.png"/>
+  </tile>
+  <tile id="162">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_75.png"/>
+  </tile>
+  <tile id="163">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_76.png"/>
+  </tile>
+  <tile id="164">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_77.png"/>
+  </tile>
+  <tile id="165">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_78.png"/>
+  </tile>
+  <tile id="166">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_79.png"/>
+  </tile>
+  <tile id="167">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_80.png"/>
+  </tile>
+  <tile id="168">
+   <image width="32" height="32" source="assets/tiles/IndustrialTile_81.png"/>
+  </tile>
+  <tile id="169">
+   <image width="32" height="32" source="assets/tiles/Ladder1.png"/>
+  </tile>
+  <tile id="170">
+   <image width="32" height="32" source="assets/tiles/Pointer1.png"/>
+  </tile>
+  <tile id="171">
+   <image width="32" height="32" source="assets/tiles/Pointer2.png"/>
+  </tile>
+ </tileset>
+ <tileset firstgid="173" source="tilesets/Backgrounds.tsx"/>
+ <tileset firstgid="175" source="tilesets/Hud.tsx"/>
+ <tileset firstgid="188" name="Tienda" tilewidth="1000" tileheight="500" tilecount="1" columns="0">
+  <grid orientation="orthogonal" width="1" height="1"/>
+  <tile id="0">
+   <image width="1000" height="500" source="assets/oficina/Oficina_Roz_Completa.png"/>
+  </tile>
+ </tileset>
+ <tileset firstgid="189" source="tilesets/animated_transporter.tsx"/>
+ <tileset firstgid="201" source="tilesets/Screen1.tsx"/>
+ <tileset firstgid="205" source="tilesets/Screen2.tsx"/>
+ <tileset firstgid="209" source="tilesets/office.tsx"/>
+ <tileset firstgid="212" source="tilesets/logo.tsx"/>
+ <layer id="1" name="Paredes" width="60" height="34" locked="1">
+  <data encoding="csv">
+109,109,109,109,109,109,109,109,109,109,151,109,151,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,
+109,109,109,109,109,109,109,109,109,109,142,109,142,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,
+109,109,109,109,109,109,109,109,109,109,151,109,151,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,
+109,109,109,109,109,109,109,109,109,109,142,109,142,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,
+109,109,109,109,109,109,109,109,109,109,142,109,142,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,
+109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,
+109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,
+109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,
+109,89,109,109,109,109,89,109,109,109,109,89,109,109,109,109,89,109,109,109,109,109,107,109,109,109,109,109,98,109,109,109,109,109,109,109,109,89,109,109,127,109,109,109,109,109,89,109,109,109,109,109,109,109,109,109,109,109,109,109,
+109,107,109,109,98,109,107,109,109,109,109,107,109,109,109,109,107,109,109,98,109,109,107,109,109,109,109,109,89,109,109,109,98,109,109,109,109,89,109,109,107,109,109,109,109,109,127,117,108,108,127,109,109,109,109,109,109,109,109,109,
+109,89,109,125,116,109,89,109,126,127,108,127,108,108,127,117,127,109,109,116,126,118,107,109,109,109,109,109,89,109,109,125,107,125,109,109,109,107,109,109,107,109,126,118,125,109,89,109,109,109,89,109,125,98,109,109,109,109,109,109,
+109,107,109,126,118,109,107,109,127,118,109,107,109,109,89,109,89,109,109,109,109,109,107,109,109,109,109,109,107,109,109,109,116,109,109,109,109,107,109,109,107,109,109,109,109,109,89,109,109,109,89,109,109,116,125,109,109,109,109,109,
+109,89,109,109,109,109,89,109,109,109,109,107,125,98,107,109,127,117,108,108,108,117,127,117,108,117,108,108,127,108,108,118,126,108,117,108,117,127,117,108,127,108,117,108,108,108,127,117,118,109,89,109,109,109,109,109,109,109,109,109,
+117,109,117,108,108,117,127,117,108,108,117,127,109,116,127,109,109,109,109,109,109,109,89,109,109,109,109,109,107,109,109,109,109,109,109,109,109,89,109,109,109,109,109,109,109,109,109,109,109,109,127,108,117,108,108,108,109,109,109,109,
+109,109,109,109,109,109,107,109,109,109,109,89,109,109,89,109,109,109,109,109,109,109,107,109,109,109,109,109,116,109,109,109,109,109,109,109,109,127,108,117,108,108,108,127,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,
+92,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,109,109,109,109,
+101,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,109,109,109,109,
+101,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,109,109,109,109,109,109,
+101,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,109,109,109,109,109,
+101,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,109,109,109,109,
+101,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,109,109,109,
+110,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,111,109,
+109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,
+109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,
+109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,
+109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,
+109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,
+109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,
+109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,
+109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,
+109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,
+109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,
+109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,
+109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109,109
+</data>
+ </layer>
+ <objectgroup id="2" name="Fondos" locked="1">
+  <object id="1" name="fondo_subsuelo" gid="174" x="0" y="1088" width="1920" height="367.333">
+   <properties>
+    <property name="alto" type="float" value="367.33"/>
+    <property name="ancho" type="float" value="1920"/>
+    <property name="name" value="fondo_subsuelo"/>
+    <property name="x" type="float" value="0"/>
+    <property name="y" type="float" value="1088"/>
+   </properties>
+  </object>
+  <object id="46" name="fondo_exterior" gid="173" x="1698" y="993.333" width="221.667" height="993.333">
+   <properties>
+    <property name="alto" type="float" value="993.33"/>
+    <property name="ancho" type="float" value="221.67"/>
+    <property name="name" value="fondo_exterior"/>
+    <property name="x" type="float" value="1698"/>
+    <property name="y" type="float" value="993.33"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="9" name="Tienda" locked="1">
+  <object id="48" name="tienda" gid="188" x="256" y="256" width="223.75" height="114">
+   <properties>
+    <property name="alto" type="float" value="114"/>
+    <property name="ancho" type="float" value="228"/>
+    <property name="name" value="tienda"/>
+    <property name="x" type="float" value="256"/>
+    <property name="y" type="float" value="256"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="5" name="Hud" opacity="0.47">
+  <object id="3" name="caja_de_mensajes" x="32" y="842" width="389" height="142">
+   <properties>
+    <property name="alto" type="float" value="142"/>
+    <property name="ancho" type="float" value="389"/>
+    <property name="name" value="caja_de_mensajes"/>
+    <property name="x" type="float" value="32"/>
+    <property name="y" type="float" value="960"/>
+   </properties>
+   <text fontfamily="MS Shell Dlg 2" pixelsize="32" wrap="1" color="#ffffff">Presione ESC para acceder al menu</text>
+  </object>
+  <object id="4" name="inventario_items" x="480" y="856" width="483" height="105">
+   <properties>
+    <property name="alto" type="float" value="105"/>
+    <property name="ancho" type="float" value="483"/>
+    <property name="name" value="inventario_items"/>
+    <property name="x" type="float" value="480"/>
+    <property name="y" type="float" value="960"/>
+   </properties>
+  </object>
+  <object id="6" name="armamento" x="1022" y="856" width="295.313" height="104.667">
+   <properties>
+    <property name="alto" type="float" value="104.67"/>
+    <property name="ancho" type="float" value="295.31"/>
+    <property name="name" value="armamento"/>
+    <property name="x" type="float" value="1022"/>
+    <property name="y" type="float" value="960"/>
+   </properties>
+  </object>
+  <object id="7" name="contenedor_gritos_sm" gid="178" x="1376" y="960" width="480.849" height="107.24">
+   <properties>
+    <property name="alto" type="float" value="107.24"/>
+    <property name="ancho" type="float" value="480.85"/>
+    <property name="name" value="contenedor_gritos_sm"/>
+    <property name="x" type="float" value="1376"/>
+    <property name="y" type="float" value="960"/>
+   </properties>
+  </object>
+  <object id="8" name="contenedor_gritos_lg" gid="179" x="608" y="116" width="701.118" height="99">
+   <properties>
+    <property name="alto" type="float" value="99"/>
+    <property name="ancho" type="float" value="701.12"/>
+    <property name="name" value="contenedor_gritos_lg"/>
+    <property name="x" type="float" value="608"/>
+    <property name="y" type="float" value="116"/>
+   </properties>
+  </object>
+  <object id="9" name="emoji_pj1" gid="175" x="1441.95" y="66" width="41.8947" height="41.5582">
+   <properties>
+    <property name="alto" type="float" value="41.56"/>
+    <property name="ancho" type="float" value="41.89"/>
+    <property name="name" value="emoji_pj1"/>
+    <property name="x" type="float" value="1441.95"/>
+    <property name="y" type="float" value="66"/>
+   </properties>
+  </object>
+  <object id="10" name="emoji_pj2" gid="175" x="1440" y="120" width="43.9109" height="43.5582">
+   <properties>
+    <property name="alto" type="float" value="43.56"/>
+    <property name="ancho" type="float" value="43.91"/>
+    <property name="name" value="emoji_pj2"/>
+    <property name="x" type="float" value="1440"/>
+    <property name="y" type="float" value="120"/>
+   </properties>
+  </object>
+  <object id="11" name="vida_1_pj1" gid="180" x="1491.61" y="66" width="42.0452" height="40.6667">
+   <properties>
+    <property name="alto" type="float" value="40.67"/>
+    <property name="ancho" type="float" value="42.05"/>
+    <property name="name" value="vida_1_pj1"/>
+    <property name="x" type="float" value="1491.61"/>
+    <property name="y" type="float" value="66"/>
+   </properties>
+  </object>
+  <object id="12" name="vida_2_pj1" gid="180" x="1541.26" y="66" width="42.0452" height="40.6667">
+   <properties>
+    <property name="alto" type="float" value="40.67"/>
+    <property name="ancho" type="float" value="42.05"/>
+    <property name="name" value="vida_2_pj1"/>
+    <property name="x" type="float" value="1541.26"/>
+    <property name="y" type="float" value="66"/>
+   </properties>
+  </object>
+  <object id="13" name="vida_3_pj1" gid="180" x="1589.26" y="66" width="42.0452" height="40.6667">
+   <properties>
+    <property name="alto" type="float" value="40.67"/>
+    <property name="ancho" type="float" value="42.05"/>
+    <property name="name" value="vida_3_pj1"/>
+    <property name="x" type="float" value="1589.26"/>
+    <property name="y" type="float" value="66"/>
+   </properties>
+  </object>
+  <object id="14" name="vida_1_pj2" gid="180" x="1491.1" y="120" width="42.0452" height="40.6667">
+   <properties>
+    <property name="alto" type="float" value="40.67"/>
+    <property name="ancho" type="float" value="42.05"/>
+    <property name="name" value="vida_1_pj2"/>
+    <property name="x" type="float" value="1491.1"/>
+    <property name="y" type="float" value="120"/>
+   </properties>
+  </object>
+  <object id="15" name="vida_2_pj2" gid="180" x="1540.74" y="120" width="42.0452" height="40.6667">
+   <properties>
+    <property name="alto" type="float" value="40.67"/>
+    <property name="ancho" type="float" value="42.05"/>
+    <property name="name" value="vida_2_pj2"/>
+    <property name="x" type="float" value="1540.74"/>
+    <property name="y" type="float" value="120"/>
+   </properties>
+  </object>
+  <object id="16" name="vida_3_pj2" gid="180" x="1588.74" y="120" width="42.0452" height="40.6667">
+   <properties>
+    <property name="alto" type="float" value="40.67"/>
+    <property name="ancho" type="float" value="42.05"/>
+    <property name="name" value="vida_3_pj2"/>
+    <property name="x" type="float" value="1588.74"/>
+    <property name="y" type="float" value="120"/>
+   </properties>
+  </object>
+  <object id="25" name="escape_mons_1" gid="186" x="298" y="71.8913" width="41.2145" height="49.547">
+   <properties>
+    <property name="alto" type="float" value="49.55"/>
+    <property name="ancho" type="float" value="41.21"/>
+    <property name="name" value="escape_mons_1"/>
+    <property name="x" type="float" value="298"/>
+    <property name="y" type="float" value="71.89"/>
+   </properties>
+  </object>
+  <object id="26" name="escape_mons_2" gid="186" x="350.371" y="71.8913" width="41.2145" height="49.547">
+   <properties>
+    <property name="alto" type="float" value="49.55"/>
+    <property name="ancho" type="float" value="41.21"/>
+    <property name="name" value="escape_mons_2"/>
+    <property name="x" type="float" value="350.37"/>
+    <property name="y" type="float" value="71.89"/>
+   </properties>
+  </object>
+  <object id="27" name="escape_mons_3" gid="186" x="402.743" y="72.8101" width="41.2145" height="49.547">
+   <properties>
+    <property name="alto" type="float" value="49.55"/>
+    <property name="ancho" type="float" value="41.21"/>
+    <property name="name" value="escape_mons_3"/>
+    <property name="x" type="float" value="402.74"/>
+    <property name="y" type="float" value="72.81"/>
+   </properties>
+  </object>
+  <object id="28" name="escape_nin_1" gid="185" x="298" y="117.372" width="40.6567" height="39.9676">
+   <properties>
+    <property name="alto" type="float" value="39.97"/>
+    <property name="ancho" type="float" value="40.66"/>
+    <property name="name" value="escape_nin_1"/>
+    <property name="x" type="float" value="298"/>
+    <property name="y" type="float" value="117.37"/>
+   </properties>
+  </object>
+  <object id="29" name="escape_nin_2" gid="185" x="351.405" y="117.372" width="40.6567" height="39.9676">
+   <properties>
+    <property name="alto" type="float" value="39.97"/>
+    <property name="ancho" type="float" value="40.66"/>
+    <property name="name" value="escape_nin_2"/>
+    <property name="x" type="float" value="351.4"/>
+    <property name="y" type="float" value="117.37"/>
+   </properties>
+  </object>
+  <object id="30" name="escape_nin_3" gid="185" x="403.087" y="117.372" width="40.6567" height="39.9676">
+   <properties>
+    <property name="alto" type="float" value="39.97"/>
+    <property name="ancho" type="float" value="40.66"/>
+    <property name="name" value="escape_nin_3"/>
+    <property name="x" type="float" value="403.09"/>
+    <property name="y" type="float" value="117.37"/>
+   </properties>
+  </object>
+  <object id="66" name="indicador_contenedor_gritos_lg" x="776.26" y="46.25" width="364.58" height="37.6">
+   <properties>
+    <property name="alto" type="float" value="38"/>
+    <property name="ancho" type="float" value="365"/>
+    <property name="name" value="indicador_contenedor_gritos_lg"/>
+    <property name="x" type="float" value="776.26"/>
+    <property name="y" type="float" value="89.5"/>
+   </properties>
+  </object>
+  <object id="69" name="indicador_contenedor_gritos_sm" x="1497.06" y="883.9" width="238.71" height="41.5">
+   <properties>
+    <property name="alto" type="float" value="42"/>
+    <property name="ancho" type="float" value="238.71"/>
+    <property name="name" value="indicador_contenedor_gritos_sm"/>
+    <property name="x" type="float" value="1497.06"/>
+    <property name="y" type="float" value="931"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer id="4" name="Plataformas" width="60" height="34" locked="1">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,165,166,166,166,166,166,167,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,168,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+189,190,191,189,190,191,189,190,191,189,190,191,189,190,191,189,190,191,189,190,191,189,190,191,189,190,191,189,190,191,189,190,191,189,190,191,189,190,191,189,190,191,189,190,191,189,190,191,189,190,191,189,190,191,189,190,191,189,190,191,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup id="6" name="Puertas" locked="1">
+  <object id="34" name="spawn_1" gid="183" x="0" y="256" width="96.1957" height="75">
+   <properties>
+    <property name="alto" type="float" value="75"/>
+    <property name="ancho" type="float" value="96.2"/>
+    <property name="name" value="spawn_1"/>
+    <property name="x" type="float" value="0"/>
+    <property name="y" type="float" value="256"/>
+   </properties>
+  </object>
+  <object id="35" name="spawn_2" gid="183" x="0" y="480" width="96.1957" height="75">
+   <properties>
+    <property name="alto" type="float" value="75"/>
+    <property name="ancho" type="float" value="96.2"/>
+    <property name="name" value="spawn_2"/>
+    <property name="x" type="float" value="0"/>
+    <property name="y" type="float" value="480"/>
+   </properties>
+  </object>
+  <object id="36" name="spawn_3" gid="183" x="0" y="704" width="96.1957" height="75">
+   <properties>
+    <property name="alto" type="float" value="75"/>
+    <property name="ancho" type="float" value="96.2"/>
+    <property name="name" value="spawn_3"/>
+    <property name="x" type="float" value="0"/>
+    <property name="y" type="float" value="704"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="10" name="RectangulosPlataformas" visible="0" locked="1">
+  <object id="50" name="plat_uno" x="1696.5" y="256" width="223.5" height="31.75"/>
+  <object id="51" name="plat_dos" x="1696" y="480" width="223.5" height="31.75"/>
+  <object id="53" name="plat_tres" x="1696" y="704" width="223.5" height="31.75"/>
+ </objectgroup>
+ <objectgroup id="7" name="Colisiones" locked="1">
+  <object id="39" name="plat_1_a" x="0" y="256" width="1912.42" height="15.25"/>
+  <object id="41" name="plat_2_a" x="0" y="480" width="1912.31" height="15.0909"/>
+  <object id="43" name="plat_3" x="0" y="704" width="1918" height="16.0313"/>
+  <object id="44" name="pared_izq" x="0" y="65.3333" width="7.33333" height="639.333"/>
+  <object id="45" name="pared_der" x="1912.33" y="65.3335" width="7.33333" height="639.333"/>
+ </objectgroup>
+ <layer id="12" name="Decoración" width="60" height="34" locked="1">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+205,0,0,0,0,0,0,205,0,0,0,0,0,0,0,0,0,0,209,0,0,0,0,0,209,0,0,0,0,0,0,0,0,209,0,0,0,0,0,209,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,201,0,0,0,0,0,0,0,0,0,0,0,0,201,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,201,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+205,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,209,0,0,0,0,0,209,0,0,0,0,0,0,0,205,209,0,0,0,0,0,209,0,0,0,0,0,0,0,0,0,0,205,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,201,0,0,0,0,0,0,0,0,0,0,201,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,201,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+205,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,209,0,0,0,0,0,209,0,0,0,0,0,0,0,0,209,0,0,0,0,0,209,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup id="14" name="Logos" locked="1" opacity="0.85">
+  <object id="60" name="logo_chico" gid="212" x="64" y="192" width="158" height="158">
+   <properties>
+    <property name="alto" type="float" value="158"/>
+    <property name="ancho" type="float" value="158"/>
+    <property name="name" value="logo_chico"/>
+    <property name="x" type="float" value="64"/>
+    <property name="y" type="float" value="192"/>
+   </properties>
+  </object>
+  <object id="62" name="logo_grande" gid="213" x="224" y="640" width="734.726" height="95.0515">
+   <properties>
+    <property name="alto" type="float" value="95.05"/>
+    <property name="ancho" type="float" value="734.73"/>
+    <property name="name" value="logo_grande"/>
+    <property name="x" type="float" value="224"/>
+    <property name="y" type="float" value="640"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="11" name="Ascensores">
+  <object id="71" name="ascensor_1_a" gid="187" x="672" y="256" width="65.141" height="84.6833">
+   <properties>
+    <property name="alto" type="float" value="84.68"/>
+    <property name="ancho" type="float" value="65.14"/>
+    <property name="name" value="ascensor_1_a"/>
+    <property name="x" type="float" value="672"/>
+    <property name="y" type="float" value="256"/>
+   </properties>
+  </object>
+  <object id="72" name="ascensor_1_b" gid="187" x="1152" y="256" width="65.141" height="84.6833">
+   <properties>
+    <property name="alto" type="float" value="84.68"/>
+    <property name="ancho" type="float" value="65.14"/>
+    <property name="name" value="ascensor_1_b"/>
+    <property name="x" type="float" value="1152"/>
+    <property name="y" type="float" value="256"/>
+   </properties>
+  </object>
+  <object id="73" name="ascensor_2_a" gid="187" x="672" y="480" width="65.141" height="84.6833">
+   <properties>
+    <property name="alto" type="float" value="84.68"/>
+    <property name="ancho" type="float" value="65.14"/>
+    <property name="name" value="ascensor_2_a"/>
+    <property name="x" type="float" value="672"/>
+    <property name="y" type="float" value="480"/>
+   </properties>
+  </object>
+  <object id="74" name="ascensor_2_b" gid="187" x="1152" y="480" width="65.141" height="84.6833">
+   <properties>
+    <property name="alto" type="float" value="84.68"/>
+    <property name="ancho" type="float" value="65.14"/>
+    <property name="name" value="ascensor_2_b"/>
+    <property name="x" type="float" value="1152"/>
+    <property name="y" type="float" value="480"/>
+   </properties>
+  </object>
+  <object id="75" name="ascensor_3_a" gid="187" x="672" y="704" width="65.141" height="84.6833">
+   <properties>
+    <property name="alto" type="float" value="84.68"/>
+    <property name="ancho" type="float" value="65.14"/>
+    <property name="name" value="ascensor_3_a"/>
+    <property name="x" type="float" value="672"/>
+    <property name="y" type="float" value="704"/>
+   </properties>
+  </object>
+  <object id="76" name="ascensor_3_b" gid="187" x="1152" y="704" width="65.141" height="84.6833">
+   <properties>
+    <property name="alto" type="float" value="84.68"/>
+    <property name="ancho" type="float" value="65.14"/>
+    <property name="name" value="ascensor_3_b"/>
+    <property name="x" type="float" value="1152"/>
+    <property name="y" type="float" value="704"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
