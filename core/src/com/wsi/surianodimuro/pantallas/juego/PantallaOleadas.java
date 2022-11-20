@@ -187,6 +187,10 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 				}
 			}
 		}
+		
+		else {
+			reiniciarJuego();
+		}
 	}
 
 
@@ -619,5 +623,40 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 	@Override
 	public void comenzarJuego() {
 		InfoRed.conexionGlobalEstablecida = true;
+	}
+	
+	@Override
+	public void cerrarJuego() {
+		InfoRed.conexionGlobalEstablecida = false;
+	}
+	
+	private void reiniciarJuego() {
+		
+		oleadaInfo = new OleadaInfo();
+		datosPartida = new DatosPartida();
+		infectados = new ArrayList<Infectado>();
+		proyectilesDisparados = new ArrayList<ProyectilDisparado>();
+		
+		Globales.jugadores.remove(jugadorUno);
+		Globales.jugadores.remove(jugadorDos);
+		
+		jugadorUno = new AgenteUno();
+		jugadorDos = new AgenteDos();
+		Globales.jugadores.add(jugadorUno);
+		Globales.jugadores.add(jugadorDos);
+
+		Globales.oleadaInfo = oleadaInfo;
+		Globales.datosPartida = datosPartida;
+
+		Globales.infectados = infectados;
+		Globales.proyectilesDisparados = proyectilesDisparados;
+		
+		jugadorUno.setPosicion(ConfigGraficos.ANCHO_MAPA - jugadorUno.getDimensiones()[0] - 10, mapa.getTienda().getPosicion().y);
+		jugadorDos.setPosicion(ConfigGraficos.ANCHO_MAPA - jugadorUno.getDimensiones()[0] - 10, mapa.getTienda().getPosicion().y);
+		
+		timer = new Timer();
+		hud = new HudMultiJug(mapa.getElemsHud());
+		
+		Globales.cajaMensajes = hud.getCajaMensajes();
 	}
 }

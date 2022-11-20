@@ -19,7 +19,7 @@ public class Servidor extends Thread implements Disposable {
 	public final int PUERTO = 9001;
 
 	public Servidor() {
-		System.out.println("Esperando conexiones ...");
+		System.out.println("Servidor creado.");
 		try {
 			socket = new DatagramSocket(PUERTO);
 		} catch (SocketException e) {
@@ -29,16 +29,17 @@ public class Servidor extends Thread implements Disposable {
 
 	@Override
 	public void run() {
-		do {
+		while (!offline) {
 			byte[] datos = new byte[1024];
 			DatagramPacket datagrama = new DatagramPacket(datos, datos.length);
 			try {
+				System.out.println("- Escuchando mensajes ...");
 				socket.receive(datagrama);
 				procesarMensaje(datagrama);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		} while (!offline);
+		};
 	}
 
 	public void enviarMensajeATodos(String msg) {
@@ -60,47 +61,42 @@ public class Servidor extends Thread implements Disposable {
 	public void procesarMensaje(DatagramPacket datagrama) {
 
 		String mensaje = new String(datagrama.getData()).trim();
-		System.out.println(mensaje);
+		System.out.println("Mensaje: " + mensaje);
 
 		String[] mensajeParametrizado = mensaje.split("#");
 
 		if (mensajeParametrizado[0].equals(MensajesCliente.SOLICITAR_CONEXION.getMensaje())) {
-			System.out.println("Se ha solicitado una conexion.");
 			procesarSolicitudConexion(datagrama);
 		}
 
 		else if (mensajeParametrizado[0].equals(MensajesCliente.CLIENTE_DESCONECTADO.getMensaje())) {
-			System.out.println("Se ha desconectado un cliente. Vuelan todos!");
 			DireccionCliente direccion = new DireccionCliente(datagrama.getAddress(), datagrama.getPort());
 			desconectarCliente(datagrama, direccion);
+			Globales.redListener.cerrarJuego();
 		}
 	}
 
 	private void desconectarCliente(DatagramPacket datagrama, DireccionCliente direccion) {
-		;
+		
+		System.out.println("-> Puerto " + direccion.getPUERTO() + " se ha desconectado.");
+		System.out.println("-> Se cerraran los demas clientes.");
+		
+		int i = 0;
+		
 		for (DireccionCliente dir : direcciones) {
-			System.out.println("   Chauuuu " + dir);
 			if (dir != null) {
-				if (!(dir.getIP().equals(direccion.getIP())) && !(dir.getPUERTO() == direccion.getPUERTO())) {
+				if (dir != direccion) {
+					System.out.println("-> Adios " + dir.getPUERTO());
 					enviarMensaje(MensajesServidor.DESCONECTAR_CLIENTE.getMensaje(), dir);
-				} 
-				direcciones[getNroCliente(direccion)] = null;
+				}
+				direcciones[i++] = null;
 				cantClientes -= 1;
 			}
 		}
-	}
-	
-	private void cerrarServidor() {
 		
-		offline = true;
-		InfoRed.conexionGlobalEstablecida = false;
-		
-		for (DireccionCliente dir : direcciones) {
-			if (dir != null) {
-				enviarMensaje("", dir);
-				dir = null;
-				cantClientes -= 1;
-			}
+		System.out.println("Clientes online: (" + cantClientes + ")");
+		for (DireccionCliente direccionCliente : direcciones) {
+			System.out.println("- " + direccionCliente);
 		}
 	}
 
@@ -113,12 +109,19 @@ public class Servidor extends Thread implements Disposable {
 			enviarMensaje(MensajesServidor.SOLICITUD_ACEPTADA.getMensaje() + "#" + (getNroCliente(direccion) + 1),
 					direccion);
 
-			System.out.println("Se ha registrado al cliente " + (getNroCliente(direccion) + 1) + "!");
+			System.out.println("- Se ha registrado al cliente " + (getNroCliente(direccion) + 1) + "!");
 			cantClientes++;
-			System.out.println("CLIENTES: " + cantClientes);
+			
+			System.out.println("Clientes online: (" + cantClientes + ")");
+			
+			for (DireccionCliente direccionCliente : direcciones) {
+				if (direccionCliente != null) {
+					System.out.println("- " + direccionCliente.getPUERTO());
+				}
+			};
 
 			if (cantClientes == direcciones.length) {
-				System.out.println("El servidor ha comenzado el juego!");
+				System.out.println("*** El servidor ha comenzado el juego! ***");
 				Globales.redListener.comenzarJuego();
 				enviarMensajeATodos(MensajesServidor.EMPEZAR_JUEGO.getMensaje());
 			}
@@ -127,6 +130,22 @@ public class Servidor extends Thread implements Disposable {
 		else {
 			enviarMensaje(MensajesServidor.SOLICITUD_RECHAZADA.getMensaje(), direccion);
 		}
+	}
+	
+	private void cerrarServidor() {
+		
+		offline = true;
+		InfoRed.conexionGlobalEstablecida = false;
+		
+		for (DireccionCliente dir : direcciones) {
+			if (dir != null) {
+				enviarMensaje(MensajesServidor.CERRAR_SERVIDOR.getMensaje(), dir);
+				dir = null;
+				cantClientes -= 1;
+			}
+		}
+		
+		System.out.println("Se ha cerrado el servidor!");
 	}
 
 	private int getNroCliente(DireccionCliente direccion) {
@@ -147,7 +166,9 @@ public class Servidor extends Thread implements Disposable {
 	@Override
 	public void dispose() {
 		
-		cerrarServidor();
 		this.interrupt();
+		cerrarServidor();
+		System.out.println("Se ha liberado de memoria");
+		System.exit(0);
 	}
 }
