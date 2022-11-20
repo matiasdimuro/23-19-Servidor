@@ -8,7 +8,7 @@ public final class DatosPartida {
 	public int puntajeTotal = 0;
 	public float tiempoSupervivencia = 0;
 	
-	public boolean salir = false;
+//	public boolean salir = false;
 	public boolean terminada = false;
-	public boolean suspendida = false;
+//	public boolean suspendida = false;
 }

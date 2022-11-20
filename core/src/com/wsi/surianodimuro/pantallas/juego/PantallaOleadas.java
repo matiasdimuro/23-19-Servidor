@@ -56,7 +56,7 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 		datosPartida = new DatosPartida();
 		infectados = new ArrayList<Infectado>();
 		proyectilesDisparados = new ArrayList<ProyectilDisparado>();
-		
+
 		jugadorUno = new AgenteUno();
 		jugadorDos = new AgenteDos();
 		Globales.jugadores.add(jugadorUno);
@@ -186,10 +186,10 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 					datosPartida.terminada = true;
 				}
 			}
-		}
-		
-		else {
-			reiniciarJuego();
+			
+			if (datosPartida.terminada) {
+				reiniciarJuego();				
+			}
 		}
 	}
 
