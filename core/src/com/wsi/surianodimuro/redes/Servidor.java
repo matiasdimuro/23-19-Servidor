@@ -35,7 +35,7 @@ public class Servidor extends Thread implements Disposable {
 			byte[] datos = new byte[1024];
 			DatagramPacket datagrama = new DatagramPacket(datos, datos.length);
 			try {
-//				System.out.println("- Escuchando mensajes ...");
+				System.out.println("- Escuchando mensajes ...");
 				socket.receive(datagrama);
 				procesarMensaje(datagrama);
 			} catch (IOException e) {
@@ -63,9 +63,9 @@ public class Servidor extends Thread implements Disposable {
 	public void procesarMensaje(DatagramPacket datagrama) {
 
 		String mensaje = new String(datagrama.getData()).trim();
-//		if (!mensaje.equals("Quieto") && !mensaje.equals("Dejar de disparar") && !mensaje.equals("Resetear controlador")) {
-//			System.out.println("Mensaje: " + mensaje);
-//		}			
+		if (!mensaje.equals("Quieto") && !mensaje.equals("Dejar de disparar") && !mensaje.equals("Resetear controlador")) {
+			System.out.println("Mensaje: " + mensaje);
+		}			
 		
 		DireccionCliente direccion = new DireccionCliente(datagrama.getAddress(), datagrama.getPort());
 		final int numCliente = getNroCliente(direccion);	// 0 (Jug 1) o 1 (Jug 2)

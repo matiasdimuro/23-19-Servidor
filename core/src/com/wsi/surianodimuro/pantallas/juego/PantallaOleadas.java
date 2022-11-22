@@ -199,9 +199,8 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 				}
 			}
 
-			if (datosPartida.terminada || !InfoRed.conexionGlobalEstablecida) {
+			if (!InfoRed.conexionGlobalEstablecida) {
 				reiniciarJuego();
-				terminarPartida();
 			}
 		}
 	}
@@ -733,7 +732,7 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 	
 	@Override
 	public void terminarPartida() {
-		System.out.println("Juego terminado");
+		System.out.println("--> Juego terminado");
 		datosPartida.terminada = true;
 		Globales.servidor.enviarMensajeATodos(MensajesServidor.TERMINAR_JUEGO.getMensaje());
 	}
