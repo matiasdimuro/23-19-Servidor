@@ -2,7 +2,6 @@ package com.wsi.surianodimuro.pantallas.juego;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -28,6 +27,7 @@ import com.wsi.surianodimuro.personajes.agentes.AgenteUno;
 import com.wsi.surianodimuro.personajes.agentes.armamento.proyectiles.Proyectil;
 import com.wsi.surianodimuro.personajes.agentes.armamento.proyectiles.ProyectilDisparado;
 import com.wsi.surianodimuro.redes.InfoRed;
+import com.wsi.surianodimuro.redes.MensajesServidor;
 import com.wsi.surianodimuro.redes.RedListener;
 import com.wsi.surianodimuro.utilidades.ConfigGraficos;
 import com.wsi.surianodimuro.utilidades.Globales;
@@ -35,16 +35,16 @@ import com.wsi.surianodimuro.utilidades.Utiles;
 import com.wsi.surianodimuro.utilidades.timers.Timer;
 
 public final class PantallaOleadas extends Pantalla implements ProcesosJugabilidad, RedListener {
-	
+
 	private OleadaInfo oleadaInfo;
 	private DatosPartida datosPartida;
 
 	private Mapa mapa;
-	
+
 	private Agente jugadorUno;
 	private Agente jugadorDos;
 	private HudMultiJug hud;
-	
+
 	private ArrayList<Infectado> infectados;
 	private ArrayList<ProyectilDisparado> proyectilesDisparados;
 
@@ -68,13 +68,13 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 
 		Globales.infectados = infectados;
 		Globales.proyectilesDisparados = proyectilesDisparados;
-		
+
 		Globales.mejorarEstadisticasListener = this;
 		Globales.aumentarDificultadListener = this;
 		Globales.actividadInfectadosListener = this;
 		Globales.actividadProyectilesListener = this;
 		Globales.movimientoAgenteListener = this;
-		
+
 		Globales.servidor.start();
 	}
 
@@ -91,13 +91,15 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 
 		viewport = new FitViewport(ConfigGraficos.ANCHO_MAPA, ConfigGraficos.ALTO_MAPA, cam);
 		cam.update();
-		
-		jugadorUno.setPosicion(ConfigGraficos.ANCHO_MAPA - jugadorUno.getDimensiones()[0] - 10, mapa.getTienda().getPosicion().y);
-		jugadorDos.setPosicion(ConfigGraficos.ANCHO_MAPA - jugadorUno.getDimensiones()[0] - 10, mapa.getTienda().getPosicion().y);
-		
+
+		jugadorUno.setPosicion(ConfigGraficos.ANCHO_MAPA - jugadorUno.getDimensiones()[0] - 10,
+				mapa.getTienda().getPosicion().y);
+		jugadorDos.setPosicion(ConfigGraficos.ANCHO_MAPA - jugadorUno.getDimensiones()[0] - 10,
+				mapa.getTienda().getPosicion().y);
+
 		timer = new Timer();
 		hud = new HudMultiJug(mapa.getElemsHud());
-		
+
 		Globales.cajaMensajes = hud.getCajaMensajes();
 	}
 
@@ -105,14 +107,14 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 	public void render(float delta) {
 
 		super.render(delta);
-		
+
 		if (InfoRed.conexionGlobalEstablecida) {
-			
+
 			if (!datosPartida.terminada) {
-				
+
 				timer.run();
 				Utiles.batch.begin();
-				
+
 				mapa.renderizar();
 				hud.renderizar();
 
@@ -124,7 +126,7 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 						}
 					}
 				}
-				
+
 				jugadorUno.renderizar();
 				jugadorDos.renderizar();
 
@@ -133,19 +135,24 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 				}
 
 				Utiles.batch.end();
-				
+
 				mostrarIndicadores();
-				
+
 				for (Infectado infectado : infectados) {
+					int indiceInfectado = infectados.indexOf(infectado);
 					if (infectado.controlador.mirandoIzquierda) {
 						infectado.moverseIzquierda();
 						infectado.caminarIzquierda();
+						Globales.servidor.enviarMensajeATodos(
+								MensajesServidor.MOVER_INFECTADO_IZQUIERDA.getMensaje() + "#" + indiceInfectado);
 					} else if (infectado.controlador.mirandoDerecha) {
 						infectado.moverseDerecha();
 						infectado.caminarDerecha();
+						Globales.servidor.enviarMensajeATodos(
+								MensajesServidor.MOVER_INFECTADO_DERECHA.getMensaje() + "#" + indiceInfectado);
 					}
 				}
-				
+
 				if ((oleadaInfo.oleadaEnCurso) && (infectados.size() > 0)) {
 					if (jugadorUno.controlador.puedeInfectarse) {
 						detectarInfecciones();
@@ -155,20 +162,24 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 					chequearInfectadosEnMapa();
 				}
 
+				// TODO: Enviar msgs a los clientes
 				if (proyectilesDisparados.size() > 0) {
 					procesarTrayectoriaProyectiles();
 					chequearColisionProyectiles();
 				}
 
+				// TODO: Enviar msgs a los clientes
 				if ((proyectilesDisparados.size() > 0) && ((oleadaInfo.oleadaEnCurso) && (infectados.size() > 0))) {
 					chequearProyectilesImpactados();
 				}
 
+				// TODO: Enviar msgs a los clientes
 				if (oleadaInfo.actualizarIndicador) {
 					hud.getIndicadorOleada().actualizarDatos();
 					oleadaInfo.actualizarIndicador = false;
 				}
 
+				// TODO: Enviar msgs a los clientes
 				if ((oleadaInfo.oleadaEnCurso) && (oleadaInfo.oleadaComenzada)) {
 					hud.getIndicadorGrito().actualizarDatos();
 				}
@@ -176,35 +187,36 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 				if (!oleadaInfo.dificultadAumentada) {
 					aumentarDificultad();
 				}
-				
+
+				// TODO: Enviar msgs a los clientes
 				if (!oleadaInfo.mejoraEfectuada) {
 					chequearAumentoEstadisticas();
 				}
 
 				if (!((datosPartida.escapesRestantesMonstruos > 0) && (datosPartida.escapesRestantesNinios > 0)
 						&& (jugadorUno.vida > 0) && (jugadorDos.vida > 0))) {
-					datosPartida.terminada = true;
+					terminarPartida();
 				}
 			}
-			
-			if (datosPartida.terminada) {
-				reiniciarJuego();				
+
+			if (datosPartida.terminada || !InfoRed.conexionGlobalEstablecida) {
+				reiniciarJuego();
+				terminarPartida();
 			}
 		}
 	}
-
 
 	@Override
 	public void dispose() {
 
 		super.dispose();
-		
+
 		mapa.liberarMemoria();
 		hud.liberarMemoria();
-		
+
 		jugadorUno.liberarMemoria();
 		jugadorDos.liberarMemoria();
-		
+
 		for (ProyectilDisparado proyectilDisparado : proyectilesDisparados) {
 			proyectilDisparado.proyectil.liberarMemoria();
 		}
@@ -217,9 +229,21 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 	@Override
 	public void spawnearInfectado() {
 
-		int random = Utiles.rand.nextInt(Infectados.values().length);
-		Infectado infectado = (random == 0) ? Ninios.retornarNinio(Utiles.rand.nextInt(Ninios.values().length))
+		int randomInfectado = 0;
+		int randomTipo = Utiles.rand.nextInt(Infectados.values().length);
+
+		Infectado infectado = (randomTipo == 0) ? Ninios.retornarNinio(Utiles.rand.nextInt(Ninios.values().length))
 				: Monstruos.retornarMonstruo(Utiles.rand.nextInt(Monstruos.values().length));
+
+		if (randomTipo == 0) {
+			randomInfectado = Utiles.rand.nextInt(Ninios.values().length);
+			Ninios.retornarNinio(randomInfectado);
+		}
+
+		else {
+			randomInfectado = Utiles.rand.nextInt(Monstruos.values().length);
+			Monstruos.retornarMonstruo(randomInfectado);
+		}
 
 		int numPuerta = Utiles.rand.nextInt(mapa.getPuertasSpawn().length);
 		float x = mapa.getPuertasSpawn()[numPuerta].getPosicion().x
@@ -230,6 +254,8 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 			aumentarVelocidadInfectado(infectado);
 		}
 
+		Globales.servidor.enviarMensajeATodos(MensajesServidor.SPAWNEAR_INFECTADO.getMensaje() + "#"
+				+ infectado.getTipo().toString() + "#" + randomInfectado + "#" + x + "#" + y);
 		infectado.setPosicion(x, y);
 		infectados.add(infectado);
 	}
@@ -299,7 +325,7 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 
 	@Override
 	public void chequearAumentoEstadisticas() {
-		
+
 		oleadaInfo.mejoraRapidez = (oleadaInfo.numOleada % oleadaInfo.INTERVALO_OLEADAS_MEJORA_RAPIDEZ == 0);
 		oleadaInfo.mejoraVelDisparo = (oleadaInfo.numOleada % oleadaInfo.INTERVALO_OLEADAS_MEJORA_VEL_DISP == 0);
 		oleadaInfo.mejoraAlcance = (oleadaInfo.numOleada % oleadaInfo.INTERVALO_OLEADAS_MEJORA_ALCANCE == 0);
@@ -322,16 +348,16 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 			oleadaInfo.mejoraEfectuada = true;
 		}
 	}
-	
+
 	@Override
-	public boolean chequearColisiones() {
+	public boolean chequearColisiones(int numAgente) {
 
 		int i = 0;
 		boolean colisiona = false;
 
 		do {
 			RectangleMapObject obj = mapa.getColisiones()[i];
-			if (jugadorUno.getRectangulo().overlaps(obj.getRectangle())) {
+			if (Globales.jugadores.get(numAgente).getRectangulo().overlaps(obj.getRectangle())) {
 				colisiona = true;
 			}
 		} while ((!colisiona) && (++i < mapa.getColisiones().length));
@@ -340,7 +366,7 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 	}
 
 	@Override
-	public Ascensor chequearUbicacionEnAscensor() {
+	public Ascensor chequearUbicacionEnAscensor(int numAgente) {
 
 		int i = 0;
 		boolean colisiona = false;
@@ -348,7 +374,7 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 		do {
 
 			Ascensor ascensor = mapa.getAscensores()[i];
-			Rectangle rectJug = jugadorUno.getRectangulo();
+			Rectangle rectJug = Globales.jugadores.get(numAgente).getRectangulo();
 
 			// Xo del jugador entre Xo y Xf del ascensor (colisiona) ???
 			if (((rectJug.getX() > ascensor.getRectangulo().getX())
@@ -379,14 +405,14 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 	}
 
 	@Override
-	public void procesarMovimientoVertical(Ascensor ascensorOrigen) {
+	public void procesarMovimientoVertical(int numAgente, Ascensor ascensorOrigen) {
 
 		Ascensores tipoDestino = null;
 		Ascensor ascensorDestino = null;
 
-		if ((jugadorUno.controlador.arriba) && (ascensorOrigen.getArriba() != null)) {
+		if ((Globales.jugadores.get(numAgente).controlador.arriba) && (ascensorOrigen.getArriba() != null)) {
 			tipoDestino = ascensorOrigen.getArriba();
-		} else if ((jugadorUno.controlador.abajo) && (ascensorOrigen.getAbajo() != null)) {
+		} else if ((Globales.jugadores.get(numAgente).controlador.abajo) && (ascensorOrigen.getAbajo() != null)) {
 			tipoDestino = ascensorOrigen.getAbajo();
 		}
 
@@ -406,7 +432,19 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 					- jugadorUno.getDimensiones()[0] / 2;
 			float nuevaPosY = ascensorDestino.getPosicion().y;
 
-			jugadorUno.usarAscensor(nuevaPosX, nuevaPosY);
+			Globales.jugadores.get(numAgente).usarAscensor(nuevaPosX, nuevaPosY);
+
+			if (Globales.jugadores.get(numAgente).controlador.arriba) {
+
+				Globales.servidor.enviarMensajeATodos(MensajesServidor.SUBIR_AGENTE_POR_ASCENSOR.getMensaje() + "#"
+						+ numAgente + "#" + nuevaPosX + "#" + nuevaPosY);
+
+			} else if (Globales.jugadores.get(numAgente).controlador.abajo) {
+
+				Globales.servidor.enviarMensajeATodos(MensajesServidor.BAJAR_AGENTE_POR_ASCENSOR.getMensaje() + "#"
+						+ numAgente + "#" + nuevaPosX + "#" + nuevaPosY);
+			}
+
 			// sonidos.sonarAscensor();
 		}
 	}
@@ -418,14 +456,15 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 
 			Proyectil proyectil = proyectilDisparado.proyectil;
 
-			float caminoRecorrido = jugadorUno.getArmamento()[jugadorUno.armaEnUso].getVelocidadDisparo()
-					* Gdx.graphics.getDeltaTime();
+			float caminoRecorrido = Globales.jugadores.get(0).getArmamento()[Globales.jugadores.get(0).armaEnUso]
+					.getVelocidadDisparo() * Gdx.graphics.getDeltaTime();
 			float x = proyectil.getPosicion().x
 					+ ((proyectilDisparado.getDireccion() == DireccionesDisparo.IZQUIERDA) ? -caminoRecorrido
 							: caminoRecorrido);
 			float y = proyectil.getPosicion().y;
 
 			proyectil.setPosicion(x, y);
+			// TODO: msg al cliente: ActualizarPosProyectil
 		}
 	}
 
@@ -440,7 +479,8 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 
 			if (proyectilDisparado.proyectil.getTipo() != Proyectiles.ULTIMATE) {
 
-				float alcance = jugadorUno.getArmamento()[jugadorUno.armaEnUso].getAlcance();
+				float alcance = Globales.jugadores.get(0).getArmamento()[Globales.jugadores.get(0).armaEnUso]
+						.getAlcance();
 				float posAlcanceX = proyectilDisparado.posicionInicial.x
 						+ ((proyectilDisparado.getDireccion() == DireccionesDisparo.IZQUIERDA) ? -alcance : alcance);
 
@@ -466,6 +506,7 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 
 			if (colision) {
 				proyectilesColisionados.add(proyectilDisparado);
+				// TODO: msg al cliente: BorrarProyectilesColisionados
 			}
 		}
 
@@ -494,7 +535,8 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 					infectadoListable = (InfectadosListables) Class
 							.forName("com.wsi.surianodimuro.personajes." + subPaquete + "." + tipo)
 							.getDeclaredMethod("getTipo" + tipo).invoke(infectado);
-					jugadorUno.actualizarSustoPuntos(infectadoListable.getSustoPuntos());
+					Globales.jugadores.get(0).actualizarSustoPuntos(infectadoListable.getSustoPuntos());
+					Globales.jugadores.get(1).actualizarSustoPuntos(infectadoListable.getSustoPuntos());
 					datosPartida.puntajeTotal += infectadoListable.getSustoPuntos();
 				} catch (NoSuchMethodException | SecurityException | ClassNotFoundException | IllegalAccessException
 						| IllegalArgumentException | InvocationTargetException e) {
@@ -523,13 +565,16 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 					if (infectado.getDebilidad() == proyectilDisparado.proyectil.getTipo()) {
 //						Gdx.audio.newSound(Gdx.files.internal(proyectilDisparado.proyectil.getTipo().getRutaSonidoColision())).play();
 						proyectilesDisparadosImpactados.add(proyectilDisparado);
+						// TODO: Msg al cliente: BorrarProyectilDisparado
 						if (!infectado.controlador.desinfectado) {
-							infectado.restarVida();;
+							infectado.restarVida();
+							// TODO: Msg al cliente: ActualizarVidaInfectado
 						}
 						impactado = true;
 					} else if ((proyectilDisparado.proyectil.getTipo() == Proyectiles.ULTIMATE)
 							&& (!infectado.controlador.desinfectado)) {
 						infectado.vida = 0;
+						// TODO: Msg al cliente: ActualizarVidaInfectado
 					}
 				}
 
@@ -561,54 +606,74 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 			}
 		}
 	}
-	
+
 	@Override
 	public void detectarInfecciones() {
 
-		int i = 0;
-		boolean infeccion = false;
+		for (int j = 0; j < Globales.jugadores.size(); j++) {
 
-		do {
-			Infectado infectado = infectados.get(i);
-			if ((infectado.vida > 0) && (infectado.getRectangulo().overlaps(jugadorUno.getRectangulo()))) {
-				infeccion = true;
-				jugadorUno.restarVida();
-				jugadorUno.controlador.puedeInfectarse = false;
-				Globales.cajaMensajes.setTexto(Mensajes.INFECTADO.getMensaje());
-				hud.getIndicadorVidasJugUno().actualizar();
-//				if (jugadorUno.vida > 0) {
-//					Gdx.audio.newSound(Gdx.files.internal("sonidos/oof.mp3")).play();
-//				}
-			}
-		} while ((!infeccion) && (++i < infectados.size()));
+			int i = 0;
+			boolean infeccion = false;
+
+			do {
+				Infectado infectado = infectados.get(i);
+				if ((infectado.vida > 0)
+						&& (infectado.getRectangulo().overlaps(Globales.jugadores.get(j).getRectangulo()))) {
+					infeccion = true;
+					Globales.jugadores.get(j).restarVida();
+					Globales.jugadores.get(j).controlador.puedeInfectarse = false;
+					// TODO: Enviar a todos: RestarVidaAgente
+					Globales.cajaMensajes.setTexto(Mensajes.INFECTADO.getMensaje());
+					// TODO: Enviar a cliente: ActualizarCajaMensajes
+					hud.getIndicadorVidasJugUno().actualizar();
+					// TODO: Enviar a todos: ActualizarHudAgente
+					hud.getIndicadorVidasJugDos().actualizar();
+					// TODO: Enviar a todos: ActualizarHudAgente
+//					if (jugadorUno.vida > 0) {
+//						Gdx.audio.newSound(Gdx.files.internal("sonidos/oof.mp3")).play();
+//					}
+				}
+			} while ((!infeccion) && (++i < infectados.size()));
+		}
 	}
 
 	@Override
 	public void aumentarVida() {
 		jugadorUno.sumarVida();
+		jugadorDos.sumarVida();
+		// TODO: Enviar a todos: AumentarVidaAgente
 		hud.getIndicadorVidasJugUno().actualizar();
+		hud.getIndicadorVidasJugDos().actualizar();
+		// TODO: Enviar a todos: ActualizarHudAgente
 	}
 
 	@Override
 	public void aumentarRapidez() {
 		jugadorUno.incrementarVelocidad();
+		jugadorDos.incrementarVelocidad();
+		// TODO: Enviar a todos: AumentarVelocidadAgente.
 	}
 
 	@Override
 	public void aumentarAlcance() {
 		jugadorUno.getArmamento()[0].aumentarAlcance();
 		jugadorUno.getArmamento()[1].aumentarAlcance();
+		jugadorDos.getArmamento()[0].aumentarAlcance();
+		jugadorDos.getArmamento()[1].aumentarAlcance();
+		// TODO: Enviar a todos: AumentarAlcanceDisparo
 	}
 
 	@Override
 	public void aumentarVelDisparo() {
 		jugadorUno.getArmamento()[0].aumentarVelocidadDisparo();
 		jugadorUno.getArmamento()[1].aumentarVelocidadDisparo();
+		jugadorDos.getArmamento()[0].aumentarVelocidadDisparo();
+		jugadorDos.getArmamento()[1].aumentarVelocidadDisparo();
+		// TODO: Enviar a todos: AumentarVelocidadDisparo
 	}
-	
-	
+
 	private void mostrarIndicadores() {
-		
+
 		for (Infectado infectado : infectados) {
 			infectado.getIndicadorVida().renderizar();
 		}
@@ -620,26 +685,30 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 		hud.getIndicadorGrito().mostrarIndicador();
 	}
 
+	
 	@Override
 	public void comenzarJuego() {
 		InfoRed.conexionGlobalEstablecida = true;
 	}
+
 	
 	@Override
 	public void cerrarJuego() {
 		InfoRed.conexionGlobalEstablecida = false;
 	}
 	
-	private void reiniciarJuego() {
-		
+
+	@Override
+	public void reiniciarJuego() {
+
 		oleadaInfo = new OleadaInfo();
 		datosPartida = new DatosPartida();
 		infectados = new ArrayList<Infectado>();
 		proyectilesDisparados = new ArrayList<ProyectilDisparado>();
-		
+
 		Globales.jugadores.remove(jugadorUno);
 		Globales.jugadores.remove(jugadorDos);
-		
+
 		jugadorUno = new AgenteUno();
 		jugadorDos = new AgenteDos();
 		Globales.jugadores.add(jugadorUno);
@@ -650,13 +719,133 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 
 		Globales.infectados = infectados;
 		Globales.proyectilesDisparados = proyectilesDisparados;
-		
-		jugadorUno.setPosicion(ConfigGraficos.ANCHO_MAPA - jugadorUno.getDimensiones()[0] - 10, mapa.getTienda().getPosicion().y);
-		jugadorDos.setPosicion(ConfigGraficos.ANCHO_MAPA - jugadorUno.getDimensiones()[0] - 10, mapa.getTienda().getPosicion().y);
-		
+
+		jugadorUno.setPosicion(ConfigGraficos.ANCHO_MAPA - jugadorUno.getDimensiones()[0] - 10,
+				mapa.getTienda().getPosicion().y);
+		jugadorDos.setPosicion(ConfigGraficos.ANCHO_MAPA - jugadorUno.getDimensiones()[0] - 10,
+				mapa.getTienda().getPosicion().y);
+
 		timer = new Timer();
 		hud = new HudMultiJug(mapa.getElemsHud());
-		
+
 		Globales.cajaMensajes = hud.getCajaMensajes();
+	}
+	
+	@Override
+	public void terminarPartida() {
+		System.out.println("Juego terminado");
+		datosPartida.terminada = true;
+		Globales.servidor.enviarMensajeATodos(MensajesServidor.TERMINAR_JUEGO.getMensaje());
+	}
+	
+
+	@Override
+	public void moverAgenteIzquierda(int numAgente) {
+
+		Globales.jugadores.get(numAgente).controlador.caminando = true;
+		Globales.jugadores.get(numAgente).controlador.mirandoIzquierda = true;
+		Globales.jugadores.get(numAgente).controlador.mirandoDerecha = false;
+		Globales.jugadores.get(numAgente).controlador.izquierda = true;
+		Globales.jugadores.get(numAgente).moverseIzquierda();
+
+		if (chequearColisiones(numAgente)) {
+			Globales.jugadores.get(numAgente).moverseDerecha();
+		} else {
+			Globales.servidor.enviarMensaje(MensajesServidor.MOVER_AGENTE_IZQUIERDA.getMensaje() + "#" + numAgente,
+					Globales.servidor.getDirecciones()[((numAgente == 0) ? 1 : 0)]);
+		}
+	}
+	
+
+	@Override
+	public void moverAgenteDerecha(int numAgente) {
+
+		Globales.jugadores.get(numAgente).controlador.caminando = true;
+		Globales.jugadores.get(numAgente).controlador.mirandoDerecha = true;
+		Globales.jugadores.get(numAgente).controlador.mirandoIzquierda = false;
+		Globales.jugadores.get(numAgente).controlador.derecha = true;
+		Globales.jugadores.get(numAgente).moverseDerecha();
+
+		if (chequearColisiones(numAgente)) {
+			Globales.jugadores.get(numAgente).moverseIzquierda();
+		} else {
+			Globales.servidor.enviarMensaje(MensajesServidor.MOVER_AGENTE_DERECHA.getMensaje() + "#" + numAgente,
+					Globales.servidor.getDirecciones()[((numAgente == 0) ? 1 : 0)]);
+		}
+	}
+	
+
+	@Override
+	public void subirAgentePorAscensor(int numAgente) {
+
+		Globales.jugadores.get(numAgente).controlador.arriba = true;
+
+		Ascensor ascensorOrigen = chequearUbicacionEnAscensor(numAgente);
+		if (ascensorOrigen != null) {
+			procesarMovimientoVertical(numAgente, ascensorOrigen);
+		}
+	}
+	
+
+	@Override
+	public void bajarAgentePorAscensor(int numAgente) {
+
+		Globales.jugadores.get(numAgente).controlador.abajo = true;
+
+		Ascensor ascensorOrigen = chequearUbicacionEnAscensor(numAgente);
+		if (ascensorOrigen != null) {
+			procesarMovimientoVertical(numAgente, ascensorOrigen);
+		}
+	}
+	
+
+	@Override
+	public void cambiarArmaAgente(int numAgente, int numArmaNueva) {
+
+		Globales.jugadores.get(numAgente).armaEnUso = numArmaNueva;
+		Globales.servidor.enviarMensajeATodos(
+				MensajesServidor.CAMBIAR_ARMA_AGENTE.getMensaje() + "#" + numAgente + "#" + numArmaNueva);
+	}
+	
+
+	@Override
+	public void dispararProyectil(int numAgente) {
+
+		Globales.jugadores.get(numAgente).controlador.disparando = true;
+		Globales.jugadores.get(numAgente).dispararProyectil();
+		Globales.jugadores.get(numAgente).controlador.puedeDisparar = false;
+		Globales.servidor.enviarMensajeATodos(MensajesServidor.DISPARAR_PROYECTIL.getMensaje() + "#" + numAgente);
+	}
+	
+
+	@Override
+	public void dispararUltimate(int numAgente) {
+
+		Globales.jugadores.get(numAgente).controlador.disparando = true;
+		Globales.jugadores.get(numAgente).dispararUltimate();
+		Globales.jugadores.get(numAgente).actualizarSustoPuntos(-Globales.oleadaInfo.GRITOS_ULTIMATE);
+		Globales.jugadores.get(numAgente).controlador.puedeDisparar = false;
+		Globales.servidor.enviarMensajeATodos(MensajesServidor.DISPARAR_ULTIMATE.getMensaje() + "#" + numAgente);
+	}
+	
+
+	@Override
+	public void mantenerAgenteQuieto(int numAgente) {
+		Globales.jugadores.get(numAgente).controlador.caminando = false;
+		Globales.servidor.enviarMensajeATodos(MensajesServidor.MANTENER_AGENTE_QUIETO.getMensaje() + "#" + numAgente);
+	}
+	
+
+	@Override
+	public void pararFuegoAgente(int numAgente) {
+		Globales.jugadores.get(numAgente).controlador.disparando = false;
+		Globales.servidor.enviarMensajeATodos(MensajesServidor.PARAR_FUEGO_AGENTE.getMensaje() + "#" + numAgente);
+	}
+	
+
+	@Override
+	public void resetearEstadosAgente(int numAgente) {
+		Globales.jugadores.get(numAgente).controlador.resetearEstados();
+		Globales.servidor.enviarMensajeATodos(MensajesServidor.RESETEAR_ESTADOS_AGENTE.getMensaje() + "#" + numAgente);
 	}
 }

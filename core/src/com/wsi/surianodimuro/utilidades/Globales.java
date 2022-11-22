@@ -3,7 +3,6 @@ package com.wsi.surianodimuro.utilidades;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.audio.Music;
 import com.wsi.surianodimuro.interfaces.ActividadInfectadosListener;
 import com.wsi.surianodimuro.interfaces.ActividadProyectilesListener;
 import com.wsi.surianodimuro.interfaces.AumentarDificultadListener;

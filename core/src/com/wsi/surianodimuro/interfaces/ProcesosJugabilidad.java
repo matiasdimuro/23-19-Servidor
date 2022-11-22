@@ -25,13 +25,13 @@ public interface ProcesosJugabilidad extends MejorarEstadisticasListener, Aument
 	/* MovimientoAgenteListener */
 	
 	@Override
-	boolean chequearColisiones();
+	boolean chequearColisiones(int numAgente);
 
 	@Override
-	Ascensor chequearUbicacionEnAscensor();
+	Ascensor chequearUbicacionEnAscensor(int numAgente);
 
 	@Override
-	void procesarMovimientoVertical(Ascensor ascensorOrigen);
+	void procesarMovimientoVertical(int numAgente, Ascensor ascensorOrigen);
 
 	/* ActividadProyectilesListener */
 	

@@ -4,7 +4,7 @@ import com.wsi.surianodimuro.objetos.Ascensor;
 
 public interface MovimientoAgenteListener {
 
-	boolean chequearColisiones();
-	Ascensor chequearUbicacionEnAscensor();
-	void procesarMovimientoVertical(Ascensor ascensorOrigen);
+	boolean chequearColisiones(int numAgente);
+	Ascensor chequearUbicacionEnAscensor(int numAgente);
+	void procesarMovimientoVertical(int numAgente, Ascensor ascensorOrigen);
 }
