@@ -67,9 +67,7 @@ public class Servidor extends Thread implements Disposable {
 	public void procesarMensaje(DatagramPacket datagrama) {
 
 		String mensaje = new String(datagrama.getData()).trim();
-		if (!mensaje.equals("Quieto") && !mensaje.equals("Dejar de disparar") && !mensaje.equals("Resetear controlador")) {
-			System.out.println("Mensaje: " + mensaje);
-		}			
+		System.out.println("Mensaje: " + mensaje);
 		
 		DireccionCliente direccion = new DireccionCliente(datagrama.getAddress(), datagrama.getPort());
 		final int numCliente = getNroCliente(direccion);	// 0 (Jug 1) o 1 (Jug 2)
@@ -151,7 +149,7 @@ public class Servidor extends Thread implements Disposable {
 		
 		for (DireccionCliente dir : direcciones) {
 			if (dir != null) {
-				if (dir != direccion) {
+				if ((!dir.getIP().equals(direccion.getIP())) || (dir.getPUERTO() != direccion.getPUERTO())) {
 					System.out.println("-> Adios " + dir.getPUERTO());
 					enviarMensaje(MensajesServidor.DESCONECTAR_CLIENTE.getMensaje(), dir);
 				}
@@ -239,9 +237,9 @@ public class Servidor extends Thread implements Disposable {
 	@Override
 	public void dispose() {
 		
+		System.out.println("Se ha liberado de memoria");
 		this.interrupt();
 		cerrarServidor();
-		System.out.println("Se ha liberado de memoria");
 		System.exit(0);
 	}
 	
