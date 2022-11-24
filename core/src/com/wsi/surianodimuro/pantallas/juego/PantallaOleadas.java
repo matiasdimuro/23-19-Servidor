@@ -153,10 +153,9 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 					}
 				}
 
+				// TODO: Implementar - Enviar msgs
 				if ((oleadaInfo.oleadaEnCurso) && (infectados.size() > 0)) {
-					if (jugadorUno.controlador.puedeInfectarse) {
-						detectarInfecciones();
-					}
+					detectarInfecciones();
 					detectarEscapes();
 					chequearVidaInfectados();
 					chequearInfectadosEnMapa();
@@ -184,6 +183,7 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 					hud.getIndicadorGrito().actualizarDatos();
 				}
 
+				// TODO: Enviar msgs a los clientes
 				if (!oleadaInfo.dificultadAumentada) {
 					aumentarDificultad();
 				}
@@ -228,20 +228,19 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 	@Override
 	public void spawnearInfectado() {
 
+		Infectado infectado;
+		
 		int randomInfectado = 0;
 		int randomTipo = Utiles.rand.nextInt(Infectados.values().length);
 
-		Infectado infectado = (randomTipo == 0) ? Ninios.retornarNinio(Utiles.rand.nextInt(Ninios.values().length))
-				: Monstruos.retornarMonstruo(Utiles.rand.nextInt(Monstruos.values().length));
-
 		if (randomTipo == 0) {
 			randomInfectado = Utiles.rand.nextInt(Ninios.values().length);
-			Ninios.retornarNinio(randomInfectado);
+			infectado = Ninios.retornarNinio(randomInfectado);
 		}
 
 		else {
 			randomInfectado = Utiles.rand.nextInt(Monstruos.values().length);
-			Monstruos.retornarMonstruo(randomInfectado);
+			infectado = Monstruos.retornarMonstruo(randomInfectado);
 		}
 
 		int numPuerta = Utiles.rand.nextInt(mapa.getPuertasSpawn().length);
@@ -608,32 +607,37 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 
 	@Override
 	public void detectarInfecciones() {
-
-		for (int j = 0; j < Globales.jugadores.size(); j++) {
-
-			int i = 0;
-			boolean infeccion = false;
-
-			do {
-				Infectado infectado = infectados.get(i);
-				if ((infectado.vida > 0)
-						&& (infectado.getRectangulo().overlaps(Globales.jugadores.get(j).getRectangulo()))) {
+		
+		int i = 0;
+		boolean infeccion = false;
+		
+		do {
+			Infectado infectado = infectados.get(i);
+			if (infectado.vida > 0) {
+				
+				if ((jugadorUno.controlador.puedeInfectarse) && (infectado.getRectangulo().overlaps(jugadorUno.getRectangulo()))) {
 					infeccion = true;
-					Globales.jugadores.get(j).restarVida();
-					Globales.jugadores.get(j).controlador.puedeInfectarse = false;
-					// TODO: Enviar a todos: RestarVidaAgente
-					Globales.cajaMensajes.setTexto(Mensajes.INFECTADO.getMensaje());
-					// TODO: Enviar a cliente: ActualizarCajaMensajes
-					hud.getIndicadorVidasJugUno().actualizar();
-					// TODO: Enviar a todos: ActualizarHudAgente
-					hud.getIndicadorVidasJugDos().actualizar();
-					// TODO: Enviar a todos: ActualizarHudAgente
-//					if (jugadorUno.vida > 0) {
-//						Gdx.audio.newSound(Gdx.files.internal("sonidos/oof.mp3")).play();
-//					}
+					jugadorUno.restarVida();
+					jugadorUno.controlador.puedeInfectarse = false;
+					// TODO: Enviar a cliente: Has sido infectado -> sonido, caja mensajes.
+					System.out.println("-> Jugador Uno infectado");
 				}
-			} while ((!infeccion) && (++i < infectados.size()));
-		}
+				
+				if ((jugadorDos.controlador.puedeInfectarse) && (infectado.getRectangulo().overlaps(jugadorDos.getRectangulo()))) {
+					infeccion = true;
+					jugadorDos.restarVida();
+					jugadorDos.controlador.puedeInfectarse = false;
+					// TODO: Enviar a cliente: Has sido infectado -> sonido, caja mensajes.
+					System.out.println("-> Jugador Dos infectado");
+				}
+				
+				if (infeccion) {
+					hud.getIndicadorVidasJugUno().actualizar();
+					hud.getIndicadorVidasJugDos().actualizar();
+					// TODO: Enviar a todos: Actualizar HUD, Vidas.
+				}
+			}
+		} while (++i < infectados.size());
 	}
 
 	@Override

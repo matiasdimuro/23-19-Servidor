@@ -23,7 +23,6 @@ public enum MensajesServidor {
 	MOVER_INFECTADO_IZQUIERDA("Mover infectado izquierda"),
 	MOVER_INFECTADO_DERECHA("Mover infectado derecha"),
 	
-	
 	TERMINAR_JUEGO("Terminar juego"),
 	EMPEZAR_JUEGO("Empezar juego");
 	
