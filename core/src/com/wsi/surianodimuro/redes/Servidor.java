@@ -1,6 +1,7 @@
 package com.wsi.surianodimuro.redes;
 
 import java.io.IOException;
+import java.net.BindException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
@@ -16,13 +17,16 @@ public class Servidor extends Thread implements Disposable {
 	private int cantClientes = 0;
 	private DireccionCliente[] direcciones = new DireccionCliente[2];
 
-	private boolean offline = false;
+	private boolean offline = true;
 	public final int PUERTO = 9001;
 
 	public Servidor() {
 		System.out.println("Servidor creado.");
 		try {
 			socket = new DatagramSocket(PUERTO);
+			offline = false;
+		} catch (BindException e) {
+			System.out.println("-> El servidor ya ha sido creado.");
 		} catch (SocketException e) {
 			e.printStackTrace();
 		}
