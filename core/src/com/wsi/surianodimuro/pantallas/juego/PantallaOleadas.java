@@ -123,6 +123,18 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 					if (!oleadaInfo.libreDeEntes) {
 						for (Infectado infectado : infectados) {
 							infectado.renderizar();
+							int indice = infectados.indexOf(infectado);
+							if (infectado.controlador.mirandoIzquierda) {
+								infectado.moverseIzquierda();
+								infectado.caminarIzquierda();
+								Globales.servidor.enviarMensajeATodos(
+										MensajesServidor.MOVER_INFECTADO_IZQUIERDA.getMensaje() + "#" + indice);
+							} else if (infectado.controlador.mirandoDerecha) {
+								infectado.moverseDerecha();
+								infectado.caminarDerecha();
+								Globales.servidor.enviarMensajeATodos(
+										MensajesServidor.MOVER_INFECTADO_DERECHA.getMensaje() + "#" + indice);
+							}
 						}
 					}
 				}
@@ -135,39 +147,24 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 				}
 
 				Utiles.batch.end();
-
 				mostrarIndicadores();
-
-				for (Infectado infectado : infectados) {
-					int indiceInfectado = infectados.indexOf(infectado);
-					if (infectado.controlador.mirandoIzquierda) {
-						infectado.moverseIzquierda();
-						infectado.caminarIzquierda();
-						Globales.servidor.enviarMensajeATodos(
-								MensajesServidor.MOVER_INFECTADO_IZQUIERDA.getMensaje() + "#" + indiceInfectado);
-					} else if (infectado.controlador.mirandoDerecha) {
-						infectado.moverseDerecha();
-						infectado.caminarDerecha();
-						Globales.servidor.enviarMensajeATodos(
-								MensajesServidor.MOVER_INFECTADO_DERECHA.getMensaje() + "#" + indiceInfectado);
-					}
-				}
 
 				// TODO: Implementar - Enviar msgs
 				if ((oleadaInfo.oleadaEnCurso) && (infectados.size() > 0)) {
+					// TODO: Implementar - Enviar msgs
 					detectarInfecciones();
+					// TODO: Implementar - Enviar msgs
 					detectarEscapes();
-					chequearVidaInfectados();
+					// TODO: Implementar - Enviar msgs
+					chequearVidaInfectados();}
 					chequearInfectadosEnMapa();
 				}
 
-				// TODO: Enviar msgs a los clientes
 				if (proyectilesDisparados.size() > 0) {
 					procesarTrayectoriaProyectiles();
 					chequearColisionProyectiles();
 				}
 
-				// TODO: Enviar msgs a los clientes
 				if ((proyectilesDisparados.size() > 0) && ((oleadaInfo.oleadaEnCurso) && (infectados.size() > 0))) {
 					chequearProyectilesImpactados();
 				}
@@ -203,7 +200,7 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 				reiniciarJuego();
 			}
 		}
-	}
+
 
 	@Override
 	public void dispose() {
@@ -225,128 +222,26 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 		}
 	}
 
-	@Override
-	public void spawnearInfectado() {
-
-		Infectado infectado;
-		
-		int randomInfectado = 0;
-		int randomTipo = Utiles.rand.nextInt(Infectados.values().length);
-
-		if (randomTipo == 0) {
-			randomInfectado = Utiles.rand.nextInt(Ninios.values().length);
-			infectado = Ninios.retornarNinio(randomInfectado);
-		}
-
-		else {
-			randomInfectado = Utiles.rand.nextInt(Monstruos.values().length);
-			infectado = Monstruos.retornarMonstruo(randomInfectado);
-		}
-
-		int numPuerta = Utiles.rand.nextInt(mapa.getPuertasSpawn().length);
-		float x = mapa.getPuertasSpawn()[numPuerta].getPosicion().x
-				+ mapa.getPuertasSpawn()[numPuerta].getDimensiones()[0] / 2;
-		float y = mapa.getPuertasSpawn()[numPuerta].getPosicion().y;
-
-		if (oleadaInfo.aumentarVelocidadInfectados) {
-			aumentarVelocidadInfectado(infectado);
-		}
-
-		Globales.servidor.enviarMensajeATodos(MensajesServidor.SPAWNEAR_INFECTADO.getMensaje() + "#"
-				+ infectado.getTipo().toString() + "#" + randomInfectado + "#" + x + "#" + y);
-		infectado.setPosicion(x, y);
-		infectados.add(infectado);
-	}
-
-	@Override
-	public void chequearInfectadosEnMapa() {
-
-		ArrayList<Infectado> infectadosFueraDeMapa = new ArrayList<Infectado>();
-
-		Rectangle zonaEscape = mapa.getZonaEscape().getRectangle();
-		PuertaSpawn puerta = mapa.getPuertasSpawn()[0];
+	
+	
+	
+	
+	private void mostrarIndicadores() {
 
 		for (Infectado infectado : infectados) {
-			float x = infectado.getPosicion().x;
-			if (((infectado.controlador.mirandoDerecha) && (x >= zonaEscape.getX() + zonaEscape.getWidth()))
-					|| ((infectado.controlador.mirandoIzquierda)
-							&& (x + infectado.getDimensiones()[0] <= puerta.getPosicion().x))) {
-				infectadosFueraDeMapa.add(infectado);
-			}
+			infectado.getIndicadorVida().renderizar();
 		}
 
-		for (Infectado infectadoFueraDeMapa : infectadosFueraDeMapa) {
-			infectados.remove(infectadoFueraDeMapa);
+		if (oleadaInfo.oleadaEnCurso) {
+			hud.getIndicadorOleada().mostrarIndicador();
 		}
+
+		hud.getIndicadorGrito().mostrarIndicador();
 	}
 
-	@Override
-	public void aumentarDuracionOleada() {
-		TiempoProcesos.duracionOleada += 10;
-	}
-
-	@Override
-	public void aumentarVelocidadSpawn() {
-		if (TiempoProcesos.tpoRetardoSpawns >= 1) {
-			TiempoProcesos.tpoRetardoSpawns -= .5f;
-		}
-	}
-
-	@Override
-	public void aumentarVelocidadInfectado(Infectado infectado) {
-		for (int i = 0; i < oleadaInfo.aumentoDeVelocidad; i++) {
-			infectado.incrementarVelocidad();
-		}
-	}
-
-	@Override
-	public void aumentarDificultad() {
-
-		oleadaInfo.aumentarSpawns = (oleadaInfo.numOleada % oleadaInfo.INTERVALO_OLEADAS_AUMENTO_SPAWNS == 0);
-		oleadaInfo.aumentarDuracionOleada = (oleadaInfo.numOleada % oleadaInfo.INTERVALO_OLEADAS_AUMENTO_DURACION == 0);
-		oleadaInfo.aumentarVelocidadInfectados = (oleadaInfo.numOleada
-				% oleadaInfo.INTERVALO_OLEADAS_AUMENTO_VELOCIDAD == 0);
-
-		if (oleadaInfo.aumentarVelocidadInfectados) {
-			oleadaInfo.aumentoDeVelocidad = oleadaInfo.numOleada / oleadaInfo.INTERVALO_OLEADAS_AUMENTO_VELOCIDAD;
-		}
-
-		if (oleadaInfo.aumentarSpawns) {
-			aumentarVelocidadSpawn();
-			oleadaInfo.dificultadAumentada = true;
-		}
-		if (oleadaInfo.aumentarDuracionOleada) {
-			aumentarDuracionOleada();
-			oleadaInfo.dificultadAumentada = true;
-		}
-	}
-
-	@Override
-	public void chequearAumentoEstadisticas() {
-
-		oleadaInfo.mejoraRapidez = (oleadaInfo.numOleada % oleadaInfo.INTERVALO_OLEADAS_MEJORA_RAPIDEZ == 0);
-		oleadaInfo.mejoraVelDisparo = (oleadaInfo.numOleada % oleadaInfo.INTERVALO_OLEADAS_MEJORA_VEL_DISP == 0);
-		oleadaInfo.mejoraAlcance = (oleadaInfo.numOleada % oleadaInfo.INTERVALO_OLEADAS_MEJORA_ALCANCE == 0);
-		oleadaInfo.mejoraVida = (oleadaInfo.numOleada % oleadaInfo.INTERVALO_OLEADAS_MEJORA_VIDA == 0);
-
-		if (oleadaInfo.mejoraRapidez) {
-			aumentarRapidez();
-			oleadaInfo.mejoraEfectuada = true;
-		}
-		if (oleadaInfo.mejoraVelDisparo) {
-			aumentarVelDisparo();
-			oleadaInfo.mejoraEfectuada = true;
-		}
-		if (oleadaInfo.mejoraAlcance) {
-			aumentarAlcance();
-			oleadaInfo.mejoraEfectuada = true;
-		}
-		if (oleadaInfo.mejoraVida) {
-			aumentarVida();
-			oleadaInfo.mejoraEfectuada = true;
-		}
-	}
-
+	
+	
+	
 	@Override
 	public boolean chequearColisiones(int numAgente) {
 
@@ -442,11 +337,75 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 				Globales.servidor.enviarMensajeATodos(MensajesServidor.BAJAR_AGENTE_POR_ASCENSOR.getMensaje() + "#"
 						+ numAgente + "#" + nuevaPosX + "#" + nuevaPosY);
 			}
-
-			// sonidos.sonarAscensor();
 		}
 	}
 
+	
+	
+	
+	@Override
+	public void spawnearInfectado() {
+		
+		Infectado infectado;
+		
+		int randomInfectado = 0;
+		int randomTipo = Utiles.rand.nextInt(Infectados.values().length);
+
+		if (randomTipo == 0) {
+			randomInfectado = Utiles.rand.nextInt(Ninios.values().length);
+			infectado = Ninios.retornarNinio(randomInfectado);
+		}
+
+		else {
+			randomInfectado = Utiles.rand.nextInt(Monstruos.values().length);
+			infectado = Monstruos.retornarMonstruo(randomInfectado);
+		}
+
+		int numPuerta = Utiles.rand.nextInt(mapa.getPuertasSpawn().length);
+		float x = mapa.getPuertasSpawn()[numPuerta].getPosicion().x
+				+ mapa.getPuertasSpawn()[numPuerta].getDimensiones()[0] / 2;
+		float y = mapa.getPuertasSpawn()[numPuerta].getPosicion().y;
+
+		if (oleadaInfo.aumentarVelocidadInfectados) {
+			aumentarVelocidadInfectado(infectado);
+		}
+
+		Globales.servidor.enviarMensajeATodos(MensajesServidor.SPAWNEAR_INFECTADO.getMensaje() + "#"
+				+ infectado.getTipo().toString() + "#" + randomInfectado + "#" + x + "#" + y);
+		infectado.setPosicion(x, y);
+		infectados.add(infectado);
+	}
+
+	@Override
+	public void chequearInfectadosEnMapa() {
+
+		ArrayList<Infectado> infectadosFueraDeMapa = new ArrayList<Infectado>();
+		ArrayList<Integer> indicesFueraDeMapa = new ArrayList<Integer>();
+
+		Rectangle zonaEscape = mapa.getZonaEscape().getRectangle();
+		PuertaSpawn puerta = mapa.getPuertasSpawn()[0];
+
+		for (Infectado infectado : infectados) {
+			int indiceInfectado = infectados.indexOf(infectado);
+			float x = infectado.getPosicion().x;
+			if (((infectado.controlador.mirandoDerecha) && (x >= zonaEscape.getX() + zonaEscape.getWidth()))
+					|| ((infectado.controlador.mirandoIzquierda)
+							&& (x + infectado.getDimensiones()[0] <= puerta.getPosicion().x))) {
+				infectadosFueraDeMapa.add(infectado);
+				indicesFueraDeMapa.add(indiceInfectado);
+			}
+		}
+
+		for (Infectado infectadoFueraDeMapa : infectadosFueraDeMapa) {
+			infectados.remove(infectadoFueraDeMapa);
+		}
+		
+		for (Integer indice : indicesFueraDeMapa) {
+			Globales.servidor.enviarMensajeATodos(MensajesServidor.ELIMINAR_INFECTADO.getMensaje() + "#" + indice);			
+		}
+	}
+
+	
 	@Override
 	public void procesarTrayectoriaProyectiles() {
 
@@ -462,7 +421,9 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 			float y = proyectil.getPosicion().y;
 
 			proyectil.setPosicion(x, y);
-			// TODO: msg al cliente: ActualizarPosProyectil
+			
+			int indice = proyectilesDisparados.indexOf(proyectilDisparado);
+			Globales.servidor.enviarMensajeATodos(MensajesServidor.ACTUALIZAR_POS_PROYECTIL.getMensaje() + "#" + indice + "#" + x + "#" + y);
 		}
 	}
 
@@ -474,6 +435,7 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 		for (ProyectilDisparado proyectilDisparado : proyectilesDisparados) {
 
 			boolean colision = false;
+			int indiceProyectil = proyectilesDisparados.indexOf(proyectilDisparado);
 
 			if (proyectilDisparado.proyectil.getTipo() != Proyectiles.ULTIMATE) {
 
@@ -504,7 +466,7 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 
 			if (colision) {
 				proyectilesColisionados.add(proyectilDisparado);
-				// TODO: msg al cliente: BorrarProyectilesColisionados
+				Globales.servidor.enviarMensajeATodos(MensajesServidor.ELIMINAR_PROYECTIL.getMensaje() + "#" + indiceProyectil);
 			}
 		}
 
@@ -553,26 +515,27 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 
 			int i = 0;
 			boolean impactado = false;
+			
+			int indiceInfectado = infectados.indexOf(infectado);
 
 			do {
 
 				ProyectilDisparado proyectilDisparado = proyectilesDisparados.get(i);
-
+				int indiceProyectil = proyectilesDisparados.indexOf(proyectilDisparado);
+				
 				if (infectado.getRectangulo().overlaps(proyectilDisparado.proyectil.getRectangulo())) {
 
 					if (infectado.getDebilidad() == proyectilDisparado.proyectil.getTipo()) {
-//						Gdx.audio.newSound(Gdx.files.internal(proyectilDisparado.proyectil.getTipo().getRutaSonidoColision())).play();
 						proyectilesDisparadosImpactados.add(proyectilDisparado);
-						// TODO: Msg al cliente: BorrarProyectilDisparado
+						Globales.servidor.enviarMensajeATodos(MensajesServidor.ELIMINAR_PROYECTIL.getMensaje() + "#" + indiceProyectil);
 						if (!infectado.controlador.desinfectado) {
+							Globales.servidor.enviarMensajeATodos(MensajesServidor.RESTAR_VIDA_INFECTADO.getMensaje() + "#" + indiceInfectado + "#" + (infectado.vida - 1) + "#" + proyectilDisparado.proyectil.getTipo().getRutaSonidoColision());
 							infectado.restarVida();
-							// TODO: Msg al cliente: ActualizarVidaInfectado
 						}
 						impactado = true;
-					} else if ((proyectilDisparado.proyectil.getTipo() == Proyectiles.ULTIMATE)
-							&& (!infectado.controlador.desinfectado)) {
+					} else if ((proyectilDisparado.proyectil.getTipo() == Proyectiles.ULTIMATE) && (!infectado.controlador.desinfectado)) {
 						infectado.vida = 0;
-						// TODO: Msg al cliente: ActualizarVidaInfectado
+						Globales.servidor.enviarMensajeATodos(MensajesServidor.RESTAR_VIDA_INFECTADO.getMensaje() + "#" + indiceInfectado + "#" + 0 + "#" + proyectilDisparado.proyectil.getTipo().getRutaSonidoColision());
 					}
 				}
 
@@ -640,6 +603,10 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 		} while (++i < infectados.size());
 	}
 
+	
+	
+	
+	
 	@Override
 	public void aumentarVida() {
 		jugadorUno.sumarVida();
@@ -675,32 +642,89 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 		// TODO: Enviar a todos: AumentarVelocidadDisparo
 	}
 
-	private void mostrarIndicadores() {
-
-		for (Infectado infectado : infectados) {
-			infectado.getIndicadorVida().renderizar();
-		}
-
-		if (oleadaInfo.oleadaEnCurso) {
-			hud.getIndicadorOleada().mostrarIndicador();
-		}
-
-		hud.getIndicadorGrito().mostrarIndicador();
+	
+	
+	
+	@Override
+	public void aumentarDuracionOleada() {
+		TiempoProcesos.duracionOleada += 10;
 	}
 
+	@Override
+	public void aumentarVelocidadSpawn() {
+		if (TiempoProcesos.tpoRetardoSpawns >= 1) {
+			TiempoProcesos.tpoRetardoSpawns -= .5f;
+		}
+	}
+
+	@Override
+	public void aumentarVelocidadInfectado(Infectado infectado) {
+		for (int i = 0; i < oleadaInfo.aumentoDeVelocidad; i++) {
+			infectado.incrementarVelocidad();
+		}
+	}
+
+	@Override
+	public void aumentarDificultad() {
+
+		oleadaInfo.aumentarSpawns = (oleadaInfo.numOleada % oleadaInfo.INTERVALO_OLEADAS_AUMENTO_SPAWNS == 0);
+		oleadaInfo.aumentarDuracionOleada = (oleadaInfo.numOleada % oleadaInfo.INTERVALO_OLEADAS_AUMENTO_DURACION == 0);
+		oleadaInfo.aumentarVelocidadInfectados = (oleadaInfo.numOleada
+				% oleadaInfo.INTERVALO_OLEADAS_AUMENTO_VELOCIDAD == 0);
+
+		if (oleadaInfo.aumentarVelocidadInfectados) {
+			oleadaInfo.aumentoDeVelocidad = oleadaInfo.numOleada / oleadaInfo.INTERVALO_OLEADAS_AUMENTO_VELOCIDAD;
+		}
+
+		if (oleadaInfo.aumentarSpawns) {
+			aumentarVelocidadSpawn();
+			oleadaInfo.dificultadAumentada = true;
+		}
+		if (oleadaInfo.aumentarDuracionOleada) {
+			aumentarDuracionOleada();
+			oleadaInfo.dificultadAumentada = true;
+		}
+	}
+
+	@Override
+	public void chequearAumentoEstadisticas() {
+
+		oleadaInfo.mejoraRapidez = (oleadaInfo.numOleada % oleadaInfo.INTERVALO_OLEADAS_MEJORA_RAPIDEZ == 0);
+		oleadaInfo.mejoraVelDisparo = (oleadaInfo.numOleada % oleadaInfo.INTERVALO_OLEADAS_MEJORA_VEL_DISP == 0);
+		oleadaInfo.mejoraAlcance = (oleadaInfo.numOleada % oleadaInfo.INTERVALO_OLEADAS_MEJORA_ALCANCE == 0);
+		oleadaInfo.mejoraVida = (oleadaInfo.numOleada % oleadaInfo.INTERVALO_OLEADAS_MEJORA_VIDA == 0);
+
+		if (oleadaInfo.mejoraRapidez) {
+			aumentarRapidez();
+			oleadaInfo.mejoraEfectuada = true;
+		}
+		if (oleadaInfo.mejoraVelDisparo) {
+			aumentarVelDisparo();
+			oleadaInfo.mejoraEfectuada = true;
+		}
+		if (oleadaInfo.mejoraAlcance) {
+			aumentarAlcance();
+			oleadaInfo.mejoraEfectuada = true;
+		}
+		if (oleadaInfo.mejoraVida) {
+			aumentarVida();
+			oleadaInfo.mejoraEfectuada = true;
+		}
+	}
+	
+	
+	
 	
 	@Override
 	public void comenzarJuego() {
 		InfoRed.conexionGlobalEstablecida = true;
 	}
 
-	
 	@Override
 	public void cerrarJuego() {
 		InfoRed.conexionGlobalEstablecida = false;
 	}
 	
-
 	@Override
 	public void reiniciarJuego() {
 
@@ -741,6 +765,8 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 		Globales.servidor.enviarMensajeATodos(MensajesServidor.TERMINAR_JUEGO.getMensaje());
 	}
 	
+	
+	
 
 	@Override
 	public void moverAgenteIzquierda(int numAgente) {
@@ -759,7 +785,6 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 		}
 	}
 	
-
 	@Override
 	public void moverAgenteDerecha(int numAgente) {
 
@@ -777,7 +802,6 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 		}
 	}
 	
-
 	@Override
 	public void subirAgentePorAscensor(int numAgente) {
 
@@ -789,7 +813,6 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 		}
 	}
 	
-
 	@Override
 	public void bajarAgentePorAscensor(int numAgente) {
 
@@ -801,7 +824,6 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 		}
 	}
 	
-
 	@Override
 	public void cambiarArmaAgente(int numAgente, int numArmaNueva) {
 
@@ -810,7 +832,6 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 				MensajesServidor.CAMBIAR_ARMA_AGENTE.getMensaje() + "#" + numAgente + "#" + numArmaNueva);
 	}
 	
-
 	@Override
 	public void dispararProyectil(int numAgente) {
 
@@ -819,7 +840,6 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 		Globales.jugadores.get(numAgente).controlador.puedeDisparar = false;
 		Globales.servidor.enviarMensajeATodos(MensajesServidor.DISPARAR_PROYECTIL.getMensaje() + "#" + numAgente);
 	}
-	
 
 	@Override
 	public void dispararUltimate(int numAgente) {
@@ -830,21 +850,18 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 		Globales.jugadores.get(numAgente).controlador.puedeDisparar = false;
 		Globales.servidor.enviarMensajeATodos(MensajesServidor.DISPARAR_ULTIMATE.getMensaje() + "#" + numAgente);
 	}
-	
 
 	@Override
 	public void mantenerAgenteQuieto(int numAgente) {
 		Globales.jugadores.get(numAgente).controlador.caminando = false;
 		Globales.servidor.enviarMensajeATodos(MensajesServidor.MANTENER_AGENTE_QUIETO.getMensaje() + "#" + numAgente);
 	}
-	
 
 	@Override
 	public void pararFuegoAgente(int numAgente) {
 		Globales.jugadores.get(numAgente).controlador.disparando = false;
 		Globales.servidor.enviarMensajeATodos(MensajesServidor.PARAR_FUEGO_AGENTE.getMensaje() + "#" + numAgente);
 	}
-	
 
 	@Override
 	public void resetearEstadosAgente(int numAgente) {

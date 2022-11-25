@@ -22,6 +22,13 @@ public enum MensajesServidor {
 	SPAWNEAR_INFECTADO("Spawnear infectado"),
 	MOVER_INFECTADO_IZQUIERDA("Mover infectado izquierda"),
 	MOVER_INFECTADO_DERECHA("Mover infectado derecha"),
+	RESTAR_VIDA_INFECTADO("Restar vida infectado"),
+	ELIMINAR_INFECTADO("Eliminar infectado"),
+	
+	ACTUALIZAR_POS_PROYECTIL("Actualizar posicion proyectil"),
+	ELIMINAR_PROYECTIL("Eliminar proyectil"),
+	
+	REPRODUCIR_PROYECTIL_IMPACTADO("Reproducir proyectil impactado"),
 	
 	TERMINAR_JUEGO("Terminar juego"),
 	EMPEZAR_JUEGO("Empezar juego");
