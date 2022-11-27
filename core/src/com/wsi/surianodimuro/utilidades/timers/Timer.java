@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.wsi.surianodimuro.enumeradores.Mensajes;
 import com.wsi.surianodimuro.pantallas.juego.TiempoProcesos;
 import com.wsi.surianodimuro.personajes.agentes.Agente;
+import com.wsi.surianodimuro.redes.MensajesServidor;
 import com.wsi.surianodimuro.utilidades.Globales;
 
 public class Timer extends Thread {
@@ -108,17 +109,14 @@ public class Timer extends Thread {
 
 		if ((Globales.oleadaInfo.oleadaComenzada) && (!Globales.oleadaInfo.oleadaEnCurso)) {
 			cronometro += Gdx.graphics.getDeltaTime();
-//			if (!Globales.sonidos.musicaEntreRondaSonando) {
-//				Globales.sonidos.sonarMusicaEntreRonda();
-//			}
 			if (cronometro >= TiempoProcesos.tpoEntreOleadas) {
 				Globales.oleadaInfo.numOleada += 1;
 				Globales.oleadaInfo.mejoraEfectuada = false;
 				Globales.oleadaInfo.oleadaComenzada = false;
 				Globales.oleadaInfo.actualizarIndicador = true;
 				Globales.oleadaInfo.dificultadAumentada = false;
-//				Globales.sonidos.terminarMusicaEntreRonda();
 				cronometro = 0;
+				Globales.servidor.enviarMensajeATodos(MensajesServidor.ACTUALIZAR_INDICADOR_OLEADA.getMensaje() + "#" + Globales.oleadaInfo.numOleada);
 			}
 			Globales.cajaMensajes.setTexto(Mensajes.FIN_OLEADA.getMensaje());
 		}
@@ -145,7 +143,6 @@ public class Timer extends Thread {
 				Globales.oleadaInfo.oleadaEnCurso = false;
 				duracionOleada = 0;
 				cronometro = 0;
-//				Globales.sonidos.terminarMusicaDeFondo();
 			}
 		}
 	}
@@ -159,9 +156,6 @@ public class Timer extends Thread {
 				Globales.oleadaInfo.oleadaEnCurso = true;
 				cronometro = 0;
 			}
-//			if (!Globales.sonidos.musicaDeFondoSonando) {
-//				Globales.sonidos.sonarMusicaDeFondo();
-//			}			
 			Globales.cajaMensajes.setTexto(Mensajes.PREVIA_OLEADA.getMensaje());
 		}
 	}

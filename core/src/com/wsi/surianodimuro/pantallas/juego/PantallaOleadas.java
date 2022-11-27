@@ -156,7 +156,8 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 					// TODO: Implementar - Enviar msgs
 					detectarEscapes();
 					// TODO: Implementar - Enviar msgs
-					chequearVidaInfectados();}
+					chequearVidaInfectados();
+					
 					chequearInfectadosEnMapa();
 				}
 
@@ -195,11 +196,12 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 					terminarPartida();
 				}
 			}
-
-			if (!InfoRed.conexionGlobalEstablecida) {
-				reiniciarJuego();
-			}
 		}
+
+		if (!InfoRed.conexionGlobalEstablecida) {
+			reiniciarJuego();
+		}
+	}
 
 
 	@Override
@@ -554,15 +556,15 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 		for (Infectado infectado : infectados) {
 			if ((infectado.getPosicion().x) > (zonaEscape.getX() + zonaEscape.getWidth())) {
 				if (infectado.getDebilidad() == Proyectiles.PROYECTIL_DESINTOX) {
-					// sonidos.sonarEscapeMonstruo();
 					datosPartida.escapesRestantesMonstruos -= 1;
 					hud.getIndicadorEscMonstruos().actualizar();
 					Globales.cajaMensajes.setTexto(Mensajes.ESCAPE_MONSTRUO.getMensaje());
+					Globales.servidor.enviarMensajeATodos(MensajesServidor.ESCAPE_MONSTRUO.getMensaje() + "#" + Infectados.MONSTRUO.toString());
 				} else if (infectado.getDebilidad() == Proyectiles.PROYECTIL_BOO2000) {
-					// sonidos.sonarEscapeNinio();
 					datosPartida.escapesRestantesNinios -= 1;
 					hud.getIndicadorEscNinios().actualizar();
 					Globales.cajaMensajes.setTexto(Mensajes.ESCAPE_NINIO.getMensaje());
+					Globales.servidor.enviarMensajeATodos(MensajesServidor.ESCAPE_NINIOS.getMensaje() + "#" + Infectados.NINIO.toString());
 				}
 			}
 		}
@@ -582,22 +584,21 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 					infeccion = true;
 					jugadorUno.restarVida();
 					jugadorUno.controlador.puedeInfectarse = false;
-					// TODO: Enviar a cliente: Has sido infectado -> sonido, caja mensajes.
 					System.out.println("-> Jugador Uno infectado");
+					Globales.servidor.enviarMensajeATodos(MensajesServidor.INFECCION_AGENTE.getMensaje() + "#" + 0);
 				}
 				
 				if ((jugadorDos.controlador.puedeInfectarse) && (infectado.getRectangulo().overlaps(jugadorDos.getRectangulo()))) {
 					infeccion = true;
 					jugadorDos.restarVida();
 					jugadorDos.controlador.puedeInfectarse = false;
-					// TODO: Enviar a cliente: Has sido infectado -> sonido, caja mensajes.
 					System.out.println("-> Jugador Dos infectado");
+					Globales.servidor.enviarMensajeATodos(MensajesServidor.INFECCION_AGENTE.getMensaje() + "#" + 1);
 				}
 				
 				if (infeccion) {
 					hud.getIndicadorVidasJugUno().actualizar();
 					hud.getIndicadorVidasJugDos().actualizar();
-					// TODO: Enviar a todos: Actualizar HUD, Vidas.
 				}
 			}
 		} while (++i < infectados.size());
