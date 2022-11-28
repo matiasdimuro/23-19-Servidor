@@ -25,7 +25,7 @@ public enum MensajesServidor {
 	ESCAPE_NINIOS("Escape ninio"),
 	
 	INFECCION_AGENTE("Infeccion agente"),
-	/**/
+	
 	AUMENTAR_VELOCIDAD_SPAWN("Aumentar velocidad spawn"),
 	AUMENTAR_DURACION_OLEADA("Aumentar duracion oleada"),
 	
@@ -34,6 +34,7 @@ public enum MensajesServidor {
 	AUMENTAR_ALCANCE("Aumentar alcance"),
 	AUMENTAR_RAPIDEZ("Aumentar rapidez"),
 	
+	ACTUALIZAR_PUNTOS_TOTALES("Actualizar puntos totales"),
 	ACTUALIZAR_INDICADOR_GRITO("Actualizar indicador grito"),
 	ACTUALIZAR_INDICADOR_OLEADA("Actualizar indicador oleada"),
 	ACTUALIZAR_CAJA_MENSAJES("Actualizar caja mensajes"),

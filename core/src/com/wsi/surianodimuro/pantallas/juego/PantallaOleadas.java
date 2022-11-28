@@ -737,6 +737,7 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 	public void terminarPartida() {
 //		System.out.println("-> Juego terminado");
 		datosPartida.terminada = true;
+		Globales.servidor.enviarMensajeATodos(MensajesServidor.ACTUALIZAR_PUNTOS_TOTALES.getMensaje() + "#" + datosPartida.puntajeTotal);
 		Globales.servidor.enviarMensajeATodos(MensajesServidor.TERMINAR_JUEGO.getMensaje());
 	}
 	
