@@ -175,12 +175,10 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 					Globales.servidor.enviarMensajeATodos(MensajesServidor.ACTUALIZAR_INDICADOR_GRITO.getMensaje() + "#" + Globales.jugadores.get(0).getSustoPuntos());
 				}
 
-				// TODO: Enviar msgs a los clientes
 				if (!oleadaInfo.dificultadAumentada) {
 					aumentarDificultad();
 				}
 
-				// TODO: Enviar msgs a los clientes
 				if (!oleadaInfo.mejoraEfectuada) {
 					chequearAumentoEstadisticas();
 				}
@@ -365,7 +363,6 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 		if (oleadaInfo.aumentarVelocidadInfectados) {
 			aumentarVelocidadInfectado(infectado);
 		}
-
 		Globales.servidor.enviarMensajeATodos(MensajesServidor.SPAWNEAR_INFECTADO.getMensaje() + "#"
 				+ infectado.getTipo().toString() + "#" + randomInfectado + "#" + x + "#" + y);
 		infectado.setPosicion(x, y);
@@ -568,32 +565,22 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 	public void detectarInfecciones() {
 		
 		int i = 0;
-//		boolean infeccion = false;
 		
 		do {
 			Infectado infectado = infectados.get(i);
 			if (infectado.vida > 0) {
 				
 				if ((jugadorUno.controlador.puedeInfectarse) && (infectado.getRectangulo().overlaps(jugadorUno.getRectangulo()))) {
-//					infeccion = true;
 					jugadorUno.restarVida();
 					jugadorUno.controlador.puedeInfectarse = false;
-					System.out.println("-> Jugador Uno infectado");
 					Globales.servidor.enviarMensajeATodos(MensajesServidor.INFECCION_AGENTE.getMensaje() + "#" + 0);
 				}
 				
 				if ((jugadorDos.controlador.puedeInfectarse) && (infectado.getRectangulo().overlaps(jugadorDos.getRectangulo()))) {
-//					infeccion = true;
 					jugadorDos.restarVida();
 					jugadorDos.controlador.puedeInfectarse = false;
-					System.out.println("-> Jugador Dos infectado");
 					Globales.servidor.enviarMensajeATodos(MensajesServidor.INFECCION_AGENTE.getMensaje() + "#" + 1);
 				}
-				
-//				if (infeccion) {
-//					hud.getIndicadorVidasJugUno().actualizar();
-//					hud.getIndicadorVidasJugDos().actualizar();
-//				}
 			}
 		} while (++i < infectados.size());
 	}
@@ -606,17 +593,14 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 	public void aumentarVida() {
 		jugadorUno.sumarVida();
 		jugadorDos.sumarVida();
-		// TODO: Enviar a todos: AumentarVidaAgente
 		hud.getIndicadorVidasJugUno().actualizar();
 		hud.getIndicadorVidasJugDos().actualizar();
-		// TODO: Enviar a todos: ActualizarHudAgente
 	}
 
 	@Override
 	public void aumentarRapidez() {
 		jugadorUno.incrementarVelocidad();
 		jugadorDos.incrementarVelocidad();
-		// TODO: Enviar a todos: AumentarVelocidadAgente.
 	}
 
 	@Override
@@ -625,7 +609,6 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 		jugadorUno.getArmamento()[1].aumentarAlcance();
 		jugadorDos.getArmamento()[0].aumentarAlcance();
 		jugadorDos.getArmamento()[1].aumentarAlcance();
-		// TODO: Enviar a todos: AumentarAlcanceDisparo
 	}
 
 	@Override
@@ -634,7 +617,6 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 		jugadorUno.getArmamento()[1].aumentarVelocidadDisparo();
 		jugadorDos.getArmamento()[0].aumentarVelocidadDisparo();
 		jugadorDos.getArmamento()[1].aumentarVelocidadDisparo();
-		// TODO: Enviar a todos: AumentarVelocidadDisparo
 	}
 
 	
@@ -751,11 +733,13 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 		hud = new HudMultiJug(mapa.getElemsHud());
 
 		Globales.cajaMensajes = hud.getCajaMensajes();
+		
+		TiempoProcesos.resetearTiempos();
 	}
 	
 	@Override
 	public void terminarPartida() {
-		System.out.println("--> Juego terminado");
+//		System.out.println("-> Juego terminado");
 		datosPartida.terminada = true;
 		Globales.servidor.enviarMensajeATodos(MensajesServidor.TERMINAR_JUEGO.getMensaje());
 	}

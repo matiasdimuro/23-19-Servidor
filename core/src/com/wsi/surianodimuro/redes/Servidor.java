@@ -21,12 +21,12 @@ public class Servidor extends Thread implements Disposable {
 	public final int PUERTO = 9001;
 
 	public Servidor() {
-		System.out.println("Servidor creado.");
+//		System.out.println("Servidor creado.");
 		try {
 			socket = new DatagramSocket(PUERTO);
 			offline = false;
 		} catch (BindException e) {
-			System.out.println("-> El servidor ya ha sido creado.");
+//			System.out.println("El servidor ya ha sido creado.");
 		} catch (SocketException e) {
 			e.printStackTrace();
 		}
@@ -39,7 +39,7 @@ public class Servidor extends Thread implements Disposable {
 			byte[] datos = new byte[1024];
 			DatagramPacket datagrama = new DatagramPacket(datos, datos.length);
 			try {
-//				System.out.println("- Escuchando mensajes ...");
+				System.out.println("- Escuchando mensajes ...");
 				socket.receive(datagrama);
 				procesarMensaje(datagrama);
 			} catch (IOException e) {
@@ -142,15 +142,15 @@ public class Servidor extends Thread implements Disposable {
 
 	private void desconectarCliente(DatagramPacket datagrama, DireccionCliente direccion) {
 		
-		System.out.println("-> Puerto " + direccion.getPUERTO() + " se ha desconectado.");
-		System.out.println("-> Se cerraran los demas clientes.");
+//		System.out.println("-> Puerto " + direccion.getPUERTO() + " se ha desconectado.");
+//		System.out.println("-> Se cerraran los demas clientes.");
 		
 		int i = 0;
 		
 		for (DireccionCliente dir : direcciones) {
 			if (dir != null) {
 				if ((!dir.getIP().equals(direccion.getIP())) || (dir.getPUERTO() != direccion.getPUERTO())) {
-					System.out.println("-> Adios " + dir.getPUERTO());
+//					System.out.println("-> Adios " + dir.getPUERTO());
 					enviarMensaje(MensajesServidor.DESCONECTAR_CLIENTE.getMensaje(), dir);
 				}
 				direcciones[i++] = null;
@@ -158,10 +158,10 @@ public class Servidor extends Thread implements Disposable {
 			}
 		}
 		
-		System.out.println("Clientes online: (" + cantClientes + ")");
-		for (DireccionCliente direccionCliente : direcciones) {
-			System.out.println("- " + direccionCliente);
-		}
+//		System.out.println("Clientes online: (" + cantClientes + ")");
+//		for (DireccionCliente direccionCliente : direcciones) {
+//			System.out.println("- " + direccionCliente);
+//		}
 		
 		Gdx.app.postRunnable(new Runnable() {
 	         @Override
@@ -180,19 +180,19 @@ public class Servidor extends Thread implements Disposable {
 			enviarMensaje(MensajesServidor.SOLICITUD_ACEPTADA.getMensaje() + "#" + (getNroCliente(direccion) + 1),
 					direccion);
 
-			System.out.println("- Se ha registrado al cliente " + (getNroCliente(direccion) + 1) + "!");
+//			System.out.println("- Se ha registrado al cliente " + (getNroCliente(direccion) + 1) + "!");
 			cantClientes++;
 			
-			System.out.println("Clientes online: (" + cantClientes + ")");
+//			System.out.println("Clientes online: (" + cantClientes + ")");
 			
-			for (DireccionCliente direccionCliente : direcciones) {
-				if (direccionCliente != null) {
-					System.out.println("- " + direccionCliente.getPUERTO());
-				}
-			};
+//			for (DireccionCliente direccionCliente : direcciones) {
+//				if (direccionCliente != null) {
+//					System.out.println("- " + direccionCliente.getPUERTO());
+//				}
+//			};
 
 			if (cantClientes == direcciones.length) {
-				System.out.println("*** El servidor ha comenzado el juego! ***");
+//				System.out.println("*** El servidor ha comenzado el juego! ***");
 				Globales.redListener.comenzarJuego();
 				enviarMensajeATodos(MensajesServidor.EMPEZAR_JUEGO.getMensaje());
 			}
@@ -216,7 +216,7 @@ public class Servidor extends Thread implements Disposable {
 			}
 		}
 		
-		System.out.println("Se ha cerrado el servidor!");
+//		System.out.println("- Se ha cerrado el servidor!");
 	}
 
 	public int getNroCliente(DireccionCliente direccion) {
@@ -237,7 +237,6 @@ public class Servidor extends Thread implements Disposable {
 	@Override
 	public void dispose() {
 		
-		System.out.println("Se ha liberado de memoria");
 		this.interrupt();
 		cerrarServidor();
 		System.exit(0);
