@@ -82,7 +82,7 @@ public abstract class Personaje implements Ente, Dimensionable {
 	
 	@Override
 	public void incrementarVelocidad() {
-		velocidadX *= 1.25f;
+		velocidadX *= 1.1f;
 	}
 	
 	/* ====== METODOS DE RENDERIZADO ====== */

@@ -85,14 +85,14 @@ public abstract class Arma implements InventarioListable {
 	}
 	
 	public void aumentarAlcance() {
-		this.alcance += 150; 
+		this.alcance += 120; 
 		if (this.alcance >= ConfigGraficos.ANCHO_MAPA / 2) {
 			this.alcance = ConfigGraficos.ANCHO_MAPA / 2;
 		}
 	}
 	
 	public void aumentarVelocidadDisparo() {
-		this.tiempoMuertoDisparo -= 0.2f;
+		this.tiempoMuertoDisparo -= 0.075f;
 		if (this.tiempoMuertoDisparo <= 0) {
 			this.tiempoMuertoDisparo = 0.1f;
 		}

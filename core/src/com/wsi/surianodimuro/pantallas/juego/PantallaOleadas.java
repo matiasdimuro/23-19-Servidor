@@ -629,7 +629,7 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 
 	@Override
 	public void aumentarVelocidadSpawn() {
-		if (TiempoProcesos.tpoRetardoSpawns >= 1) {
+		if (TiempoProcesos.tpoRetardoSpawns >= .5f) {
 			TiempoProcesos.tpoRetardoSpawns -= .5f;
 		}
 	}
