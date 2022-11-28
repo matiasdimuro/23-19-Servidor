@@ -44,6 +44,12 @@ public abstract class Infectado extends Personaje {
 		setPosicion(posicion.x, posicion.y);
 		frameActual.draw(Utiles.batch);
 	}
+	
+	@Override
+	public void incrementarVelocidad() {
+		super.incrementarVelocidad();
+		velocidadX *= 1.25f;
+	}
 
 	@Override
 	public void cargarSpriteSheet(float ANCHO_SPRITESHEET, float ALTO_SPRITESHEET, int FILAS, int COLUMNAS) {

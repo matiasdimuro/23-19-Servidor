@@ -6,8 +6,9 @@ import com.wsi.surianodimuro.enumeradores.DireccionesDisparo;
 public class ProyectilDisparado {
 
 	public Proyectil proyectil;
-	private DireccionesDisparo direccion;
 	public Vector2 posicionInicial;	
+
+	private DireccionesDisparo direccion;
 	
 	public ProyectilDisparado(Proyectil proyectil, DireccionesDisparo direccion, float xi, float yi) {
 		
