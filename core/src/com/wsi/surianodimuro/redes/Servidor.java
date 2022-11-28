@@ -81,6 +81,12 @@ public class Servidor extends Thread implements Disposable {
 		else if (mensajeParametrizado[0].equals(MensajesCliente.CLIENTE_DESCONECTADO.getMensaje())) {
 			desconectarCliente(datagrama, direccion);
 			Globales.redListener.cerrarJuego();
+			Gdx.app.postRunnable(new Runnable() {
+		         @Override
+		         public void run() {
+		        	 Globales.redListener.reiniciarJuego();
+		         }
+		      });
 		}
 		
 		else if ((InfoRed.conexionGlobalEstablecida) && (!Globales.datosPartida.terminada)) {

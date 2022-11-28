@@ -189,10 +189,6 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 				}
 			}
 		}
-
-		if (!InfoRed.conexionGlobalEstablecida) {
-			reiniciarJuego();
-		}
 	}
 
 
