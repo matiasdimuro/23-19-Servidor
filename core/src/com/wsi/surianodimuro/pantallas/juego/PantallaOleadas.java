@@ -149,15 +149,10 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 				Utiles.batch.end();
 				mostrarIndicadores();
 
-				// TODO: Implementar - Enviar msgs
 				if ((oleadaInfo.oleadaEnCurso) && (infectados.size() > 0)) {
-					// TODO: Implementar - Enviar msgs
 					detectarInfecciones();
-					// TODO: Implementar - Enviar msgs
 					detectarEscapes();
-					// TODO: Implementar - Enviar msgs
 					chequearVidaInfectados();
-					
 					chequearInfectadosEnMapa();
 				}
 
@@ -170,15 +165,14 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 					chequearProyectilesImpactados();
 				}
 
-				// TODO: Enviar msgs a los clientes
 				if (oleadaInfo.actualizarIndicador) {
 					hud.getIndicadorOleada().actualizarDatos();
 					oleadaInfo.actualizarIndicador = false;
 				}
 
-				// TODO: Enviar msgs a los clientes
 				if ((oleadaInfo.oleadaEnCurso) && (oleadaInfo.oleadaComenzada)) {
 					hud.getIndicadorGrito().actualizarDatos();
+					Globales.servidor.enviarMensajeATodos(MensajesServidor.ACTUALIZAR_INDICADOR_GRITO.getMensaje() + "#" + Globales.jugadores.get(0).getSustoPuntos());
 				}
 
 				// TODO: Enviar msgs a los clientes
@@ -497,8 +491,8 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 					infectadoListable = (InfectadosListables) Class
 							.forName("com.wsi.surianodimuro.personajes." + subPaquete + "." + tipo)
 							.getDeclaredMethod("getTipo" + tipo).invoke(infectado);
-					Globales.jugadores.get(0).actualizarSustoPuntos(infectadoListable.getSustoPuntos());
-					Globales.jugadores.get(1).actualizarSustoPuntos(infectadoListable.getSustoPuntos());
+					jugadorUno.actualizarSustoPuntos(infectadoListable.getSustoPuntos());
+					jugadorDos.actualizarSustoPuntos(infectadoListable.getSustoPuntos());
 					datosPartida.puntajeTotal += infectadoListable.getSustoPuntos();
 				} catch (NoSuchMethodException | SecurityException | ClassNotFoundException | IllegalAccessException
 						| IllegalArgumentException | InvocationTargetException e) {
@@ -574,14 +568,14 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 	public void detectarInfecciones() {
 		
 		int i = 0;
-		boolean infeccion = false;
+//		boolean infeccion = false;
 		
 		do {
 			Infectado infectado = infectados.get(i);
 			if (infectado.vida > 0) {
 				
 				if ((jugadorUno.controlador.puedeInfectarse) && (infectado.getRectangulo().overlaps(jugadorUno.getRectangulo()))) {
-					infeccion = true;
+//					infeccion = true;
 					jugadorUno.restarVida();
 					jugadorUno.controlador.puedeInfectarse = false;
 					System.out.println("-> Jugador Uno infectado");
@@ -589,17 +583,17 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 				}
 				
 				if ((jugadorDos.controlador.puedeInfectarse) && (infectado.getRectangulo().overlaps(jugadorDos.getRectangulo()))) {
-					infeccion = true;
+//					infeccion = true;
 					jugadorDos.restarVida();
 					jugadorDos.controlador.puedeInfectarse = false;
 					System.out.println("-> Jugador Dos infectado");
 					Globales.servidor.enviarMensajeATodos(MensajesServidor.INFECCION_AGENTE.getMensaje() + "#" + 1);
 				}
 				
-				if (infeccion) {
-					hud.getIndicadorVidasJugUno().actualizar();
-					hud.getIndicadorVidasJugDos().actualizar();
-				}
+//				if (infeccion) {
+//					hud.getIndicadorVidasJugUno().actualizar();
+//					hud.getIndicadorVidasJugDos().actualizar();
+//				}
 			}
 		} while (++i < infectados.size());
 	}

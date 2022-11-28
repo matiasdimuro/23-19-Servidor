@@ -24,23 +24,19 @@ public enum MensajesServidor {
 	ESCAPE_MONSTRUO("Escape monstruo"),
 	ESCAPE_NINIOS("Escape ninio"),
 	
+	INFECCION_AGENTE("Infeccion agente"),
 	/**/
 	AUMENTAR_VELOCIDAD_SPAWN("Aumentar velocidad spawn"),
 	AUMENTAR_DURACION_OLEADA("Aumentar duracion oleada"),
 	
 	AUMENTAR_VIDA_AGENTE("Aumentar vida agente"),
-	INFECCION_AGENTE("Infeccion agente"),
 	AUMENTAR_DISPARO("Aumentar disparo"),
 	AUMENTAR_ALCANCE("Aumentar alcance"),
 	AUMENTAR_RAPIDEZ("Aumentar rapidez"),
 	
-	
 	ACTUALIZAR_INDICADOR_GRITO("Actualizar indicador grito"),
-	/**/
 	ACTUALIZAR_INDICADOR_OLEADA("Actualizar indicador oleada"),
 	ACTUALIZAR_CAJA_MENSAJES("Actualizar caja mensajes"),
-	
-	
 	
 	SPAWNEAR_INFECTADO("Spawnear infectado"),
 	MOVER_INFECTADO_IZQUIERDA("Mover infectado izquierda"),
