@@ -10,10 +10,8 @@ public class DesktopLauncher {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 
 		config.useVsync(true);
-		config.setResizable(true);
 		config.setForegroundFPS(60);
-		config.setWindowedMode(600, 400);
-//		config.setFullscreenMode(Lwjgl3ApplicationConfiguration.getDisplayMode());
+		config.setFullscreenMode(Lwjgl3ApplicationConfiguration.getDisplayMode());
 		config.setTitle("23-19 || Servidor");
 		config.setWindowIcon("logo.png");
 		
