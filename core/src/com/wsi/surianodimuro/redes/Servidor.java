@@ -21,7 +21,7 @@ public class Servidor extends Thread implements Disposable {
 	public final int PUERTO = 9001;
 
 	public Servidor() {
-//		System.out.println("Servidor creado.");
+		System.out.println("Servidor creado.");
 		try {
 			socket = new DatagramSocket(PUERTO);
 			offline = false;

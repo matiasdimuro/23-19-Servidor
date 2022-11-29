@@ -23,7 +23,7 @@ public class OleadaInfo {
 	public final int INTERVALO_OLEADAS_AUMENTO_VELOCIDAD = 7;
 	
 	public boolean mejoraRapidez = false;
-	public boolean mejoraVelDisparo= false;
+	public boolean mejoraVelDisparo = false;
 	public boolean mejoraVida = false;
 	public boolean mejoraAlcance = false;
 	

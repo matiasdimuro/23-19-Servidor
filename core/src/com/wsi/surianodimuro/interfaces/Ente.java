@@ -1,4 +1,4 @@
-package com.wsi.surianodimuro.interfaces.comportamiento;
+package com.wsi.surianodimuro.interfaces;
 
 public interface Ente {
 

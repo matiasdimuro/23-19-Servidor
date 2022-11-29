@@ -601,18 +601,22 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 
 	@Override
 	public void aumentarAlcance() {
-		jugadorUno.getArmamento()[0].aumentarAlcance();
-		jugadorUno.getArmamento()[1].aumentarAlcance();
-		jugadorDos.getArmamento()[0].aumentarAlcance();
-		jugadorDos.getArmamento()[1].aumentarAlcance();
+		for (int i = 0; i < jugadorUno.getArmamento().length; i++) {
+			jugadorUno.getArmamento()[i].aumentarAlcance();
+		}
+		for (int i = 0; i < jugadorDos.getArmamento().length; i++) {
+			jugadorDos.getArmamento()[i].aumentarAlcance();
+		}
 	}
 
 	@Override
 	public void aumentarVelDisparo() {
-		jugadorUno.getArmamento()[0].aumentarVelocidadDisparo();
-		jugadorUno.getArmamento()[1].aumentarVelocidadDisparo();
-		jugadorDos.getArmamento()[0].aumentarVelocidadDisparo();
-		jugadorDos.getArmamento()[1].aumentarVelocidadDisparo();
+		for (int i = 0; i < jugadorUno.getArmamento().length; i++) {
+			jugadorUno.getArmamento()[i].aumentarVelocidadDisparo();
+		}
+		for (int i = 0; i < jugadorDos.getArmamento().length; i++) {
+			jugadorDos.getArmamento()[i].aumentarVelocidadDisparo();
+		}
 	}
 
 	
@@ -756,8 +760,7 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 		if (chequearColisiones(numAgente)) {
 			Globales.jugadores.get(numAgente).moverseDerecha();
 		} else {
-			Globales.servidor.enviarMensaje(MensajesServidor.MOVER_AGENTE_IZQUIERDA.getMensaje() + "#" + numAgente,
-					Globales.servidor.getDirecciones()[((numAgente == 0) ? 1 : 0)]);
+			Globales.servidor.enviarMensajeATodos(MensajesServidor.MOVER_AGENTE_IZQUIERDA.getMensaje() + "#" + numAgente);
 		}
 	}
 	
@@ -773,8 +776,7 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 		if (chequearColisiones(numAgente)) {
 			Globales.jugadores.get(numAgente).moverseIzquierda();
 		} else {
-			Globales.servidor.enviarMensaje(MensajesServidor.MOVER_AGENTE_DERECHA.getMensaje() + "#" + numAgente,
-					Globales.servidor.getDirecciones()[((numAgente == 0) ? 1 : 0)]);
+			Globales.servidor.enviarMensajeATodos(MensajesServidor.MOVER_AGENTE_DERECHA.getMensaje() + "#" + numAgente);
 		}
 	}
 	

@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.wsi.surianodimuro.enumeradores.DireccionesDisparo;
-import com.wsi.surianodimuro.interfaces.comportamiento.PersonajeJugable;
+import com.wsi.surianodimuro.interfaces.PersonajeJugable;
 import com.wsi.surianodimuro.personajes.ControladorPj;
 import com.wsi.surianodimuro.personajes.Personaje;
 import com.wsi.surianodimuro.personajes.agentes.armamento.Arma;

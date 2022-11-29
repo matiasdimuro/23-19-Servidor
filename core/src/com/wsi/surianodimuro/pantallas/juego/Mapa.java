@@ -1,9 +1,6 @@
 package com.wsi.surianodimuro.pantallas.juego;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
@@ -286,39 +283,5 @@ public class Mapa {
 
 	public Imagen getTienda() {
 		return tienda;
-	}
-
-	public void mostrarColisiones() {
-
-		ShapeRenderer sr = new ShapeRenderer();
-		sr.setColor(Color.RED);
-		sr.begin(ShapeType.Line);
-
-		for (RectangleMapObject rect : rectangulosColisiones) {
-			sr.rect(rect.getRectangle().getX(), rect.getRectangle().getY(), rect.getRectangle().getWidth(),
-					rect.getRectangle().getHeight());
-		}
-
-		for (PuertaSpawn rect : puertasSpawn) {
-			sr.rect(rect.getPosicion().x, rect.getPosicion().y, rect.getDimensiones()[0], rect.getDimensiones()[1]);
-		}
-
-		for (MapObject rect : elemsHud) {
-			sr.rect(Float.parseFloat(rect.getProperties().get("x").toString()),
-					ConfigGraficos.ALTO_MAPA - Float.parseFloat(rect.getProperties().get("y").toString()),
-					Float.parseFloat(rect.getProperties().get("ancho").toString()),
-					Float.parseFloat(rect.getProperties().get("alto").toString()));
-		}
-
-		sr.setColor(Color.RED);
-		sr.rect(logoChico.getPosicion().x, logoChico.getPosicion().y, logoChico.getDimensiones()[0],
-				logoChico.getDimensiones()[1]);
-		sr.rect(logoGrande.getPosicion().x, logoGrande.getPosicion().y, logoGrande.getDimensiones()[0],
-				logoGrande.getDimensiones()[1]);
-
-		sr.setColor(Color.YELLOW);
-		sr.rect(tienda.getPosicion().x, tienda.getPosicion().y, tienda.getDimensiones()[0], tienda.getDimensiones()[1]);
-
-		sr.end();
 	}
 }

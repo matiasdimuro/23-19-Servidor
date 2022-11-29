@@ -31,9 +31,6 @@ public abstract class Globales {
 	public static MovimientoAgenteListener movimientoAgenteListener;
 	
 	public static ArrayList<Agente> jugadores = new ArrayList<Agente>();
-
-	// public static Sonidos sonidos;
-//	public static Music soundtrack;
 	
 	public static Texto cajaMensajes;
 	public static OleadaInfo oleadaInfo;

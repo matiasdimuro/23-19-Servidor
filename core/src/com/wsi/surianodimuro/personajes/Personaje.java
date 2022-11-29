@@ -6,11 +6,10 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.wsi.surianodimuro.interfaces.Dimensionable;
-import com.wsi.surianodimuro.interfaces.comportamiento.Ente;
+import com.wsi.surianodimuro.interfaces.Ente;
 
 public abstract class Personaje implements Ente, Dimensionable {
 
-	/* ====== ATRIBUTOS ======*/
 	public int vida;
 	public int velocidadX;
 	
@@ -19,7 +18,6 @@ public abstract class Personaje implements Ente, Dimensionable {
 	protected float ALTO;
 	protected Vector2 posicion;
 	
-	/* ====== ANIMACIONES y FRAMES ======*/
 	protected String rutaSpritesheet;
 	protected Sprite frameActual;
 	
@@ -48,8 +46,6 @@ public abstract class Personaje implements Ente, Dimensionable {
 		posicion = new Vector2();
 		frameActual = new Sprite();
 	}
-	
-	/* ====== COMPORTAMIENTO ====== */
 	
 	@Override
 	public void moverseIzquierda() {
@@ -83,8 +79,6 @@ public abstract class Personaje implements Ente, Dimensionable {
 	@Override
 	public void incrementarVelocidad() {}
 	
-	/* ====== METODOS DE RENDERIZADO ====== */
-	
 	@Override
 	public void renderizar() {}
 	
@@ -99,8 +93,6 @@ public abstract class Personaje implements Ente, Dimensionable {
 			animCaminIzquierda.getKeyFrames()[i].getTexture().dispose();
 		}
 	}
-	
-	/* ====== GETTERS & SETTERS ====== */
 	
 	@Override
 	public float[] getDimensiones() {
