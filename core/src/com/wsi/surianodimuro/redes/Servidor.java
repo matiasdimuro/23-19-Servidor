@@ -18,7 +18,7 @@ public class Servidor extends Thread implements Disposable {
 	private DireccionCliente[] direcciones = new DireccionCliente[2];
 
 	private boolean offline = true;
-	public final int PUERTO = 9001;
+	public int PUERTO = 9001;
 
 	public Servidor() {
 		System.out.println("Servidor creado.");
@@ -26,7 +26,7 @@ public class Servidor extends Thread implements Disposable {
 			socket = new DatagramSocket(PUERTO);
 			offline = false;
 		} catch (BindException e) {
-//			System.out.println("El servidor ya ha sido creado.");
+//			System.out.println("El puerto esta siendo ocupado.");
 		} catch (SocketException e) {
 			e.printStackTrace();
 		}
@@ -47,7 +47,7 @@ public class Servidor extends Thread implements Disposable {
 			}
 		};
 	}
-
+	
 	public void enviarMensajeATodos(String msg) {
 		for (DireccionCliente direccion : direcciones) {
 			enviarMensaje(msg, direccion);

@@ -116,7 +116,7 @@ public final class PantallaOleadas extends Pantalla implements ProcesosJugabilid
 				Utiles.batch.begin();
 
 				mapa.renderizar();
-				hud.renderizar();
+//				hud.renderizar();
 
 				if (oleadaInfo.oleadaEnCurso) {
 					oleadaInfo.libreDeEntes = (infectados.size() > 0) ? false : true;
